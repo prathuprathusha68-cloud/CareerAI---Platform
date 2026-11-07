@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assessment Instructions | CareerAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            color: #ffffff;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 5%,
+                    rgba(0, 153, 255, 0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 15%,
+                    rgba(0, 255, 220, 0.10),
+                    transparent 28%
+                ),
+                #050816;
+
+        }
+
+
+        /* =========================
+           GRID BACKGROUND
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background:
+                rgba(5,8,22,0.80);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+
+            backdrop-filter: blur(20px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #5de1ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .logo span {
+
+            color: #42d9ff;
+
+        }
+
+
+        .role-badge {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 15px;
+
+            border-radius: 25px;
+
+            color: #b8c6dd;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            background:
+                rgba(65,210,255,0.08);
+
+            border:
+                1px solid rgba(65,210,255,0.16);
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding: 52px 0 75px;
+
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #55ddff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.8px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .eyebrow::before {
+
+            content: "✦";
+
+            color: #52e1ff;
+
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(34px, 5vw, 54px);
+
+            line-height: 1.08;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .heading-gradient {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #68ddff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .subtitle {
+
+            max-width: 760px;
+
+            color: #96a5c0;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 34px;
+
+        }
+
+
+        /* =========================
+           HERO CARD
+        ========================= */
+
+        .hero-card {
+
+            padding: 32px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,38,70,0.80),
+                    rgba(8,15,33,0.90)
+                );
+
+            border:
+                1px solid rgba(90,190,255,0.16);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.28);
+
+            margin-bottom: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .hero-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(45,205,255,0.07);
+
+            filter: blur(50px);
+
+            right: -100px;
+
+            top: -150px;
+
+            pointer-events: none;
+
+        }
+
+
+        .hero-inner {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+
+        }
+
+
+        .hero-icon {
+
+            width: 64px;
+
+            height: 64px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(55,210,255,0.15),
+                    rgba(55,130,255,0.08)
+                );
+
+            border:
+                1px solid rgba(70,215,255,0.18);
+
+            font-size: 28px;
+
+            box-shadow:
+                0 0 30px rgba(50,200,255,0.10);
+
+        }
+
+
+        .hero-title {
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .hero-text {
+
+            color: #8796b2;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           METRICS
+        ========================= */
+
+        .metrics {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .metric {
+
+            padding: 25px 20px;
+
+            text-align: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,31,58,0.82),
+                    rgba(8,14,31,0.90)
+                );
+
+            border:
+                1px solid rgba(110,180,255,0.12);
+
+            box-shadow:
+                0 18px 50px rgba(0,0,0,0.20);
+
+        }
+
+
+        .metric-number {
+
+            font-size: 31px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #50dcff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .metric-label {
+
+            color: #7e8da9;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+        }
+
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size: 19px;
+
+        }
+
+
+        .section-badge {
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            color: #55dcff;
+
+            background:
+                rgba(55,220,255,0.07);
+
+            border:
+                1px solid rgba(55,220,255,0.14);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =========================
+           STRUCTURE CARD
+        ========================= */
+
+        .structure-card {
+
+            padding: 30px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,31,58,0.82),
+                    rgba(8,14,31,0.90)
+                );
+
+            border:
+                1px solid rgba(110,180,255,0.13);
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .sections {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+        }
+
+
+        .section-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.055);
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .section-row:hover {
+
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(75,210,255,0.18);
+
+            background:
+                rgba(70,180,255,0.045);
+
+        }
+
+
+        .section-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .section-number {
+
+            width: 32px;
+
+            height: 32px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(55,210,255,0.08);
+
+            border:
+                1px solid rgba(55,210,255,0.13);
+
+            color: #56ddff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .section-name {
+
+            color: #e3e9f5;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .section-description {
+
+            color: #687792;
+
+            font-size: 10px;
+
+        }
+
+
+        .section-meta {
+
+            color: #58ddff;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =========================
+           RULES
+        ========================= */
+
+        .rules-card {
+
+            padding: 30px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,31,58,0.82),
+                    rgba(8,14,31,0.90)
+                );
+
+            border:
+                1px solid rgba(110,180,255,0.13);
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .rules-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+        }
+
+
+        .rule {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.05);
+
+            color: #aeb9cd;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .rule-icon {
+
+            width: 27px;
+
+            height: 27px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background:
+                rgba(55,226,181,0.09);
+
+            color: #4de3b7;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================
+           IMPORTANT NOTICE
+        ========================= */
+
+        .notice {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 14px;
+
+            padding: 18px 20px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,180,70,0.045);
+
+            border:
+                1px solid rgba(255,180,70,0.12);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .notice-icon {
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .notice-title {
+
+            color: #ffc276;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .notice-text {
+
+            color: #8d98ad;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .start-area {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            padding-top: 5px;
+
+        }
+
+
+        .start-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 11px;
+
+            padding: 17px 34px;
+
+            border-radius: 14px;
+
+            text-decoration: none;
+
+            color: #03101b;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #45d9ff,
+                    #63f4cf
+                );
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 38px rgba(49,210,255,0.20);
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .start-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 45px rgba(49,210,255,0.32);
+
+        }
+
+
+        .start-note {
+
+            color: #586680;
+
+            font-size: 10px;
+
+            margin-top: 12px;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #4f5e79;
+
+            font-size: 10px;
+
+            margin-top: 32px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .metrics {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .sections {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .rules-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 5%;
+
+            }
+
+
+            .container {
+
+                width: 94%;
+
+                padding-top: 35px;
+
+            }
+
+
+            .metrics {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .hero-inner {
+
+                align-items: flex-start;
+
+            }
+
+
+            .hero-icon {
+
+                width: 50px;
+
+                height: 50px;
+
+                font-size: 21px;
+
+            }
+
+
+            .hero-title {
+
+                font-size: 18px;
+
+            }
+
+
+            .structure-card,
+            .rules-card {
+
+                padding: 22px;
+
+            }
+
+
+            .section-row {
+
+                align-items: flex-start;
+
+            }
+
+
+            .section-meta {
+
+                font-size: 9px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            Career<span>AI</span>
+
+        </div>
+
+
+        <div class="role-badge">
+
+            🎯
+
+            {{ target_role }}
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="container">
+
+
+        <div class="eyebrow">
+
+            CAREER READINESS ASSESSMENT
+
+        </div>
+
+
+        <h1>
+
+            Test Your
+
+            <span class="heading-gradient">
+
+                Technical Readiness
+
+            </span>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            This assessment evaluates the knowledge and problem-solving
+            skills required for your selected career role.
+            Review the structure and rules before continuing.
+
+        </p>
+
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="hero-card">
+
+
+            <div class="hero-inner">
+
+
+                <div class="hero-icon">
+
+                    📝
+
+                </div>
+
+
+                <div>
+
+
+                    <div class="hero-title">
+
+                        Career Readiness Assessment
+
+                    </div>
+
+
+                    <div class="hero-text">
+
+                        Simulated placement assessment for your target
+                        <strong>{{ target_role }}</strong> role.
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             METRICS
+        ========================= -->
+
+        <section class="metrics">
+
+
+            <div class="metric">
+
+                <div class="metric-number">
+
+                    64
+
+                </div>
+
+                <div class="metric-label">
+
+                    Total Questions
+
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-number">
+
+                    7
+
+                </div>
+
+                <div class="metric-label">
+
+                    Sections
+
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-number">
+
+                    125
+
+                </div>
+
+                <div class="metric-label">
+
+                    Minutes
+
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-number">
+
+                    100%
+
+                </div>
+
+                <div class="metric-label">
+
+                    Skill Evaluation
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             ASSESSMENT STRUCTURE
+        ========================= -->
+
+        <section class="structure-card">
+
+
+            <div class="section-title">
+
+
+                <h2>
+
+                    Assessment Structure
+
+                </h2>
+
+
+                <div class="section-badge">
+
+                    7 SECTIONS
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="sections">
+
+
+                <!-- 01 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            01
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                Quantitative Aptitude
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Numerical ability and problem solving
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        10 Questions · 15 min
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 02 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            02
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                Logical Reasoning
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Analytical thinking and logical problem solving
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        10 Questions · 15 min
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 03 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            03
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                Python
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Python programming fundamentals
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        10 Questions
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 04 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            04
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                OOP
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Object-oriented programming concepts
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        8 Questions
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 05 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            05
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                Data Structures & Algorithms
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Problem solving and algorithmic thinking
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        10 Questions
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 06 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            06
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                SQL & DBMS
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Databases and SQL fundamentals
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        8 Questions
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- 07 -->
+
+                <div class="section-row">
+
+
+                    <div class="section-left">
+
+
+                        <div class="section-number">
+
+                            07
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="section-name">
+
+                                Web / API / Git
+
+                            </div>
+
+
+                            <div class="section-description">
+
+                                Web development, APIs and version control
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-meta">
+
+                        8 Questions
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             RULES
+        ========================= -->
+
+        <section class="rules-card">
+
+
+            <div class="section-title">
+
+
+                <h2>
+
+                    Important Assessment Rules
+
+                </h2>
+
+
+                <div class="section-badge">
+
+                    PLEASE READ
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="rules-grid">
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    Camera access is required before starting.
+
+                </div>
+
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    Microphone access is required before starting.
+
+                </div>
+
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    The assessment must be completed in full-screen mode.
+
+                </div>
+
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    The assessment is strictly time-limited.
+
+                </div>
+
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    Programming and SQL questions may require code execution.
+
+                </div>
+
+
+
+                <div class="rule">
+
+
+                    <div class="rule-icon">
+
+                        ✓
+
+                    </div>
+
+
+                    Your answers are evaluated after submission.
+
+                </div>
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             IMPORTANT NOTICE
+        ========================= -->
+
+        <div class="notice">
+
+
+            <div class="notice-icon">
+
+                ⚠️
+
+            </div>
+
+
+            <div>
+
+
+                <div class="notice-title">
+
+                    Before You Continue
+
+                </div>
+
+
+                <div class="notice-text">
+
+                    Make sure your camera, microphone and browser permissions
+                    are available. After continuing, CareerAI will perform
+                    a system check before allowing you to enter the assessment.
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             START
+        ========================= -->
+
+        <div class="start-area">
+
+
+            <a
+                href="{{ url_for('assessment_start') }}"
+                class="start-btn"
+            >
+
+                Continue to System Check
+
+                <span>
+
+                    →
+
+                </span>
+
+            </a>
+
+
+            <div class="start-note">
+
+                You will not enter the assessment immediately.
+                System verification comes first.
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer">
+
+            CareerAI • AI-Powered Graduate Employment Readiness Platform
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

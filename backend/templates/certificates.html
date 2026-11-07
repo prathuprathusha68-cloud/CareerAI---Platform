@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Certificates | CareerAI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071225;
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: #0d1729;
+            padding: 20px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1150px;
+            margin: 55px auto;
+        }
+
+        .eyebrow {
+            color: #22d3ee;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 44px;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            color: #9fb0c8;
+            font-size: 17px;
+            max-width: 760px;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 22px;
+
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #0d1b33;
+
+            border: 1px solid #1f3a61;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, .18);
+        }
+
+        .icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #a9b8ce;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .completed {
+            color: #34d399;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .empty {
+            margin-top: 35px;
+
+            background: #0d1b33;
+
+            border: 1px solid #1f3a61;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            color: #a9b8ce;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        CareerAI
+    </div>
+
+
+    <div>
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('courses') }}">
+            Courses
+        </a>
+
+        <a href="{{ url_for('my_courses') }}">
+            My Courses
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<div class="container">
+
+
+    <div class="eyebrow">
+        ACHIEVEMENT CENTER
+    </div>
+
+
+    <h1>
+        My Certificates 🏆
+    </h1>
+
+
+    <p class="intro">
+
+        Certificates earned by completing your
+        CareerAI courses.
+
+        Complete a course fully to unlock
+        its certificate.
+
+    </p>
+
+
+
+    {% if certificates %}
+
+
+    <div class="grid">
+
+
+        {% for item in certificates %}
+
+
+        <div class="card">
+
+
+            <div class="icon">
+                🏆
+            </div>
+
+
+            <h2>
+
+                {{ item.course.title }}
+
+            </h2>
+
+
+            <p>
+
+                {{ item.course.description }}
+
+            </p>
+
+
+            <div class="completed">
+
+                ✓ Course Completed
+
+            </div>
+
+
+            <a
+                class="btn"
+                href="{{ url_for(
+                    'view_certificate',
+                    course_id=item.course.id
+                ) }}"
+            >
+
+                View Certificate
+
+            </a>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="empty">
+
+
+        <h2>
+            No certificates yet
+        </h2>
+
+
+        <p style="margin-top:10px;">
+
+            Complete any enrolled course to 100%
+            and your certificate will appear here.
+
+        </p>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

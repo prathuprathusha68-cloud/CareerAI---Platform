@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | CareerAI</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #20275c 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #102c4d 0%, transparent 35%),
+                #050817;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 460px;
+            padding: 25px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                #5b7cff,
+                #27d7ff
+            );
+
+            font-size: 24px;
+            margin-right: 10px;
+
+            vertical-align: middle;
+
+            box-shadow: 0 0 30px rgba(39, 215, 255, 0.3);
+        }
+
+        .logo span {
+            font-size: 28px;
+            font-weight: 700;
+            vertical-align: middle;
+        }
+
+        .login-card {
+            background: rgba(14, 20, 43, 0.94);
+
+            border: 1px solid rgba(120, 140, 255, 0.2);
+
+            border-radius: 22px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .login-card h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9ba7c7;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #dce3ff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+
+            border-radius: 10px;
+
+            border: 1px solid #303a60;
+
+            background: #080d20;
+
+            color: white;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #5b7cff;
+
+            box-shadow:
+                0 0 0 3px rgba(91, 124, 255, 0.12);
+        }
+
+        .login-btn {
+            width: 100%;
+
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #5b7cff,
+                #27c8ff
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition: 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 10px 25px rgba(39, 200, 255, 0.22);
+        }
+
+        .error {
+            background: rgba(255, 75, 75, 0.1);
+
+            border: 1px solid rgba(255, 75, 75, 0.3);
+
+            color: #ff8585;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+        .back-home {
+            text-align: center;
+
+            margin-top: 25px;
+        }
+
+        .back-home a {
+            color: #7ecfff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-home a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width: 500px) {
+
+            .login-card {
+                padding: 28px 22px;
+            }
+
+            .login-card h1 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-wrapper">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✦
+            </div>
+
+            <span>CareerAI</span>
+
+        </div>
+
+
+        <div class="login-card">
+
+            <h1>Welcome Back</h1>
+
+            <p class="subtitle">
+                Sign in to continue your career readiness journey.
+            </p>
+
+
+            {% if error %}
+
+            <div class="error">
+                {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST" action="{{ url_for('login') }}">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+
+            <div class="back-home">
+
+                <a href="{{ url_for('home') }}">
+                    ← Back to CareerAI
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

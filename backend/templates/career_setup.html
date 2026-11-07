@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Build Your Profile | CareerAI</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            min-height: 100vh;
+
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(65, 105, 225, 0.18),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(0, 220, 255, 0.12),
+                    transparent 30%
+                ),
+                #050816;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BACKGROUND EFFECTS
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 74px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+
+            background:
+                rgba(5,8,22,0.72);
+
+            backdrop-filter: blur(18px);
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f7cff,
+                    #00d9ff
+                );
+
+            box-shadow:
+                0 0 25px rgba(0,190,255,0.28);
+        }
+
+        .logo span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8fdfff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .secure {
+
+            font-size: 12px;
+
+            color: rgba(255,255,255,0.5);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+        }
+
+        .secure-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #39e58c;
+
+            box-shadow:
+                0 0 10px #39e58c;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .page {
+
+            width: min(1050px, 92%);
+
+            margin: 0 auto;
+
+            padding: 55px 0 70px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            text-align: center;
+
+            max-width: 720px;
+
+            margin: 0 auto 38px;
+        }
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 13px;
+
+            border: 1px solid
+                rgba(88,143,255,0.25);
+
+            border-radius: 50px;
+
+            background:
+                rgba(66,115,255,0.08);
+
+            color: #8cb8ff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+
+            margin-bottom: 18px;
+        }
+
+        .eyebrow-dot {
+
+            width: 6px;
+
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #4fa3ff;
+
+            box-shadow:
+                0 0 10px #4fa3ff;
+        }
+
+        .header h1 {
+
+            font-size: clamp(34px, 5vw, 54px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff 10%,
+                    #8dbdff 50%,
+                    #55e5ff 100%
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+
+            color: #8792b0;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress-area {
+
+            max-width: 720px;
+
+            margin: 0 auto 28px;
+        }
+
+        .progress-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+        .progress-label {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            color: #66728f;
+        }
+
+        .step-number {
+
+            font-size: 11px;
+
+            color: #8390ac;
+        }
+
+        .progress-bar {
+
+            height: 4px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 33.33%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4c6fff,
+                    #00d9ff
+                );
+
+            box-shadow:
+                0 0 16px rgba(0,210,255,0.45);
+
+            transition: width .4s ease;
+        }
+
+
+        /* =========================
+           STEPS
+        ========================= */
+
+        .steps {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 0;
+
+            margin-bottom: 35px;
+        }
+
+        .step {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #59647e;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .step.active {
+
+            color: #ffffff;
+        }
+
+        .step.completed {
+
+            color: #70dfff;
+        }
+
+        .step-circle {
+
+            width: 28px;
+
+            height: 28px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            background:
+                rgba(255,255,255,0.04);
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .step.active .step-circle {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #536dff,
+                    #00cfff
+                );
+
+            border-color: transparent;
+
+            box-shadow:
+                0 0 20px rgba(0,190,255,0.28);
+        }
+
+        .step.completed .step-circle {
+
+            border-color: #42dfff;
+
+            color: #42dfff;
+        }
+
+        .step-line {
+
+            width: 75px;
+
+            height: 1px;
+
+            margin: 0 12px;
+
+            background:
+                rgba(255,255,255,0.1);
+        }
+
+
+        /* =========================
+           FORM LAYOUT
+        ========================= */
+
+        .workspace {
+
+            display: grid;
+
+            grid-template-columns: 1fr 300px;
+
+            gap: 22px;
+
+            align-items: stretch;
+        }
+
+
+        /* =========================
+           FORM CARD
+        ========================= */
+
+        .form-card {
+
+            min-height: 500px;
+
+            padding: 35px;
+
+            border-radius: 24px;
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,25,50,0.88),
+                    rgba(8,13,31,0.92)
+                );
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.35);
+
+            backdrop-filter: blur(20px);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .form-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -120px;
+
+            right: -100px;
+
+            width: 260px;
+
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(62,120,255,0.09);
+
+            filter: blur(50px);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           FORM STEP
+        ========================= */
+
+        .form-step {
+
+            display: none;
+
+            animation: fadeIn .35s ease;
+        }
+
+        .form-step.active {
+
+            display: block;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(8px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+        .step-heading {
+
+            margin-bottom: 30px;
+        }
+
+        .step-heading .number {
+
+            color: #5ea8ff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 9px;
+        }
+
+        .step-heading h2 {
+
+            font-size: 27px;
+
+            letter-spacing: -0.8px;
+
+            margin-bottom: 7px;
+        }
+
+        .step-heading p {
+
+            color: #75819e;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FORM GRID
+        ========================= */
+
+        .field-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 19px;
+        }
+
+        .field {
+
+            margin-bottom: 20px;
+        }
+
+        .field.full {
+
+            grid-column: 1 / -1;
+        }
+
+        label {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #aeb9d0;
+
+            margin-bottom: 8px;
+
+            letter-spacing: .4px;
+        }
+
+        .required {
+
+            color: #5ecbff;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            border: 1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color: #ffffff;
+
+            padding: 14px 15px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            transition:
+                border-color .2s,
+                box-shadow .2s,
+                background .2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #56617a;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color:
+                rgba(76,170,255,0.75);
+
+            background:
+                rgba(70,130,255,0.06);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(50,150,255,0.08);
+        }
+
+        select {
+
+            appearance: none;
+
+            background-image:
+                linear-gradient(45deg,
+                    transparent 50%,
+                    #75819e 50%),
+                linear-gradient(135deg,
+                    #75819e 50%,
+                    transparent 50%);
+
+            background-position:
+                calc(100% - 18px) 19px,
+                calc(100% - 13px) 19px;
+
+            background-size:
+                5px 5px,
+                5px 5px;
+
+            background-repeat: no-repeat;
+        }
+
+        select option {
+
+            background: #10172c;
+
+            color: white;
+        }
+
+        textarea {
+
+            min-height: 105px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           EXPERIENCE CARDS
+        ========================= */
+
+        .experience-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .experience-option {
+
+            position: relative;
+        }
+
+        .experience-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .experience-option label {
+
+            margin: 0;
+
+            min-height: 82px;
+
+            padding: 14px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            border-radius: 13px;
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            background:
+                rgba(255,255,255,0.035);
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .experience-option label strong {
+
+            color: #e7edff;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+        .experience-option label span {
+
+            color: #64708b;
+
+            font-size: 10px;
+        }
+
+        .experience-option input:checked + label {
+
+            border-color: #4d9cff;
+
+            background:
+                rgba(55,130,255,0.13);
+
+            box-shadow:
+                0 0 20px
+                rgba(55,130,255,0.12);
+        }
+
+
+        /* =========================
+           RESUME UPLOAD
+        ========================= */
+
+        .upload-box {
+
+            border:
+                1px dashed
+                rgba(86,170,255,0.35);
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background:
+                rgba(55,120,255,0.035);
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .upload-box:hover {
+
+            border-color: #4db9ff;
+
+            background:
+                rgba(55,150,255,0.07);
+        }
+
+        .upload-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(71,135,255,0.12);
+
+            font-size: 20px;
+        }
+
+        .upload-box strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+        .upload-box span {
+
+            font-size: 10px;
+
+            color: #69758f;
+        }
+
+        .upload-box input {
+
+            display: none;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 25px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .btn {
+
+            border: none;
+
+            border-radius: 11px;
+
+            padding: 13px 21px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .btn-back {
+
+            color: #7d89a3;
+
+            background: transparent;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .btn-back:hover {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.05);
+        }
+
+        .btn-next {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #526cff,
+                    #00bfe9
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(52,135,255,0.22);
+        }
+
+        .btn-next:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(52,170,255,0.32);
+        }
+
+
+        /* =========================
+           SIDE PROFILE
+        ========================= */
+
+        .profile-card {
+
+            border-radius: 24px;
+
+            padding: 25px;
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(17,28,55,0.86),
+                    rgba(8,13,30,0.95)
+                );
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .profile-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            right: -80px;
+
+            bottom: -80px;
+
+            background:
+                rgba(0,210,255,0.10);
+
+            filter: blur(45px);
+        }
+
+        .profile-title {
+
+            color: #74819d;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            margin-bottom: 22px;
+        }
+
+        .avatar {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            margin-bottom: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #536fff,
+                    #00d5ed
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,190,255,0.18);
+        }
+
+        .profile-name {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+        .profile-role {
+
+            color: #71809e;
+
+            font-size: 11px;
+
+            margin-bottom: 25px;
+        }
+
+        .score-box {
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            margin-bottom: 20px;
+        }
+
+        .score-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+        .score-header span:first-child {
+
+            color: #8995ae;
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+        .score {
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            color: #72dfff;
+        }
+
+        .score-bar {
+
+            height: 5px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            overflow: hidden;
+        }
+
+        .score-fill {
+
+            width: 20%;
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #536fff,
+                    #00dfff
+                );
+
+            transition: width .4s ease;
+        }
+
+        .profile-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+        .profile-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #68758f;
+
+            font-size: 11px;
+        }
+
+        .profile-item .circle {
+
+            width: 18px;
+
+            height: 18px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 9px;
+        }
+
+        .profile-item.done {
+
+            color: #79dfff;
+        }
+
+        .profile-item.done .circle {
+
+            border-color: #36dfff;
+
+            color: #36dfff;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .workspace {
+
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+
+                padding-top: 35px;
+            }
+
+            .form-card {
+
+                padding: 23px;
+
+                border-radius: 18px;
+            }
+
+            .field-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+
+                grid-column: auto;
+            }
+
+            .experience-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .step-line {
+
+                width: 25px;
+
+                margin: 0 5px;
+            }
+
+            .step span:not(.step-circle) {
+
+                display: none;
+            }
+
+            .header h1 {
+
+                letter-spacing: -1.2px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✦
+        </div>
+
+        <span>CareerAI</span>
+
+    </div>
+
+
+    <div class="secure">
+
+        <div class="secure-dot"></div>
+
+        AI Career Intelligence
+
+    </div>
+
+</nav>
+
+
+
+<main class="page">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <section class="header">
+
+        <div class="eyebrow">
+
+            <span class="eyebrow-dot"></span>
+
+            AI CAREER PROFILE
+
+        </div>
+
+
+        <h1>
+            Build Your Career Profile
+        </h1>
+
+
+        <p>
+            Tell CareerAI about yourself, your experience,
+            skills and goals. We'll use your profile to create
+            a personalized career journey.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         PROGRESS
+    ========================= -->
+
+    <div class="progress-area">
+
+        <div class="progress-top">
+
+            <span class="progress-label">
+                PROFILE SETUP
+            </span>
+
+            <span class="step-number"
+                  id="stepNumber">
+                STEP 1 OF 3
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"
+                 id="progressFill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         STEP INDICATOR
+    ========================= -->
+
+    <div class="steps">
+
+        <div class="step active"
+             id="stepIndicator1">
+
+            <div class="step-circle">
+                1
+            </div>
+
+            <span>
+                About You
+            </span>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step"
+             id="stepIndicator2">
+
+            <div class="step-circle">
+                2
+            </div>
+
+            <span>
+                Career
+            </span>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step"
+             id="stepIndicator3">
+
+            <div class="step-circle">
+                3
+            </div>
+
+            <span>
+                Skills & Resume
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FORM + PROFILE PREVIEW
+    ========================= -->
+
+    <div class="workspace">
+
+
+        <form
+            id="careerForm"
+            action="{{ url_for('analyze_profile') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="form-card"
+        >
+
+
+            <!-- =====================
+                 STEP 1
+            ====================== -->
+
+            <div class="form-step active"
+                 id="formStep1">
+
+                <div class="step-heading">
+
+                    <div class="number">
+                        01 / ABOUT YOU
+                    </div>
+
+                    <h2>
+                        Let's start with you.
+                    </h2>
+
+                    <p>
+                        We need a few basic details to
+                        personalize your CareerAI experience.
+                    </p>
+
+                </div>
+
+
+                <div class="field-grid">
+
+
+                    <div class="field full">
+
+                        <label>
+                            FULL NAME
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            EMAIL ADDRESS
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <div></div>
+
+                    <button
+                        type="button"
+                        class="btn btn-next"
+                        onclick="nextStep()"
+                    >
+                        CONTINUE →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================
+                 STEP 2
+            ====================== -->
+
+            <div class="form-step"
+                 id="formStep2">
+
+                <div class="step-heading">
+
+                    <div class="number">
+                        02 / CAREER DIRECTION
+                    </div>
+
+                    <h2>
+                        Where are you heading?
+                    </h2>
+
+                    <p>
+                        Help us understand your education
+                        and the career you want to build.
+                    </p>
+
+                </div>
+
+
+                <div class="field-grid">
+
+
+                    <div class="field">
+
+                        <label>
+                            HIGHEST QUALIFICATION
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            name="education"
+                            required
+                        >
+
+                            <option value="">
+                                Select qualification
+                            </option>
+
+                            <option value="MCA">
+                                MCA
+                            </option>
+
+                            <option value="M.Tech">
+                                M.Tech
+                            </option>
+
+                            <option value="B.Tech">
+                                B.Tech
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="B.Sc">
+                                B.Sc
+                            </option>
+
+                            <option value="M.Sc">
+                                M.Sc
+                            </option>
+
+                            <option value="MBA">
+                                MBA
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            GRADUATION YEAR
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            name="graduation_year"
+                            required
+                        >
+
+                            <option value="">
+                                Select year
+                            </option>
+
+                            <option value="2026">
+                                2026
+                            </option>
+
+                            <option value="2025">
+                                2025
+                            </option>
+
+                            <option value="2024">
+                                2024
+                            </option>
+
+                            <option value="2023">
+                                2023
+                            </option>
+
+                            <option value="2022">
+                                2022
+                            </option>
+
+                            <option value="2021">
+                                2021
+                            </option>
+
+                            <option value="2020">
+                                2020
+                            </option>
+
+                            <option value="2019">
+                                2019
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            TARGET CAREER
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            name="target_job"
+                            required
+                        >
+
+                            <option value="">
+                                Select your target career
+                            </option>
+
+                            <option value="Software Developer">
+                                Software Developer
+                            </option>
+
+                            <option value="Python Developer">
+                                Python Developer
+                            </option>
+
+                            <option value="Full Stack Developer">
+                                Full Stack Developer
+                            </option>
+
+                            <option value="Backend Developer">
+                                Backend Developer
+                            </option>
+
+                            <option value="AI/ML Engineer">
+                                AI/ML Engineer
+                            </option>
+
+                            <option value="Data Analyst">
+                                Data Analyst
+                            </option>
+
+                            <option value="Test Engineer">
+                                Test Engineer
+                            </option>
+
+                            <option value="DevOps Engineer">
+                                DevOps Engineer
+                            </option>
+
+                            <option value="Cloud Engineer">
+                                Cloud Engineer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            EXPERIENCE
+                        </label>
+
+
+                        <div class="experience-grid">
+
+
+                            <div class="experience-option">
+
+                                <input
+                                    type="radio"
+                                    id="expFresher"
+                                    name="experience"
+                                    value="Fresher"
+                                    checked
+                                >
+
+                                <label for="expFresher">
+
+                                    <strong>
+                                        Fresher
+                                    </strong>
+
+                                    <span>
+                                        Starting my career
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="experience-option">
+
+                                <input
+                                    type="radio"
+                                    id="expJunior"
+                                    name="experience"
+                                    value="0-1 Years"
+                                >
+
+                                <label for="expJunior">
+
+                                    <strong>
+                                        0–1 Years
+                                    </strong>
+
+                                    <span>
+                                        Early experience
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="experience-option">
+
+                                <input
+                                    type="radio"
+                                    id="expExperienced"
+                                    name="experience"
+                                    value="1-3 Years"
+                                >
+
+                                <label for="expExperienced">
+
+                                    <strong>
+                                        1–3 Years
+                                    </strong>
+
+                                    <span>
+                                        Experienced
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="btn btn-back"
+                        onclick="previousStep()"
+                    >
+                        ← BACK
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-next"
+                        onclick="nextStep()"
+                    >
+                        CONTINUE →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================
+                 STEP 3
+            ====================== -->
+
+            <div class="form-step"
+                 id="formStep3">
+
+                <div class="step-heading">
+
+                    <div class="number">
+                        03 / SKILLS & RESUME
+                    </div>
+
+                    <h2>
+                        What can you bring?
+                    </h2>
+
+                    <p>
+                        Add your current skills and career
+                        goal. CareerAI will identify what
+                        you need to learn next.
+                    </p>
+
+                </div>
+
+
+                <div class="field-grid">
+
+
+                    <div class="field full">
+
+                        <label>
+                            YOUR SKILLS
+                        </label>
+
+                        <input
+                            type="text"
+                            name="skills"
+                            id="skills"
+                            placeholder="Python, SQL, HTML, JavaScript, Git..."
+                        >
+
+                        <small style="
+                            display:block;
+                            margin-top:7px;
+                            color:#59657e;
+                            font-size:10px;
+                        ">
+                            Separate multiple skills with commas.
+                        </small>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            CAREER GOAL
+                        </label>
+
+                        <textarea
+                            name="career_goal"
+                            id="career_goal"
+                            placeholder="Example: I want to become a skilled software developer and get placed in a product-based company."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            UPLOAD YOUR RESUME
+                        </label>
+
+
+                        <label class="upload-box"
+                               for="resume">
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                            <strong id="uploadText">
+                                Upload your resume
+                            </strong>
+
+                            <span>
+                                PDF, DOC or DOCX
+                            </span>
+
+
+                            <input
+                                type="file"
+                                name="resume"
+                                id="resume"
+                                accept=".pdf,.doc,.docx"
+                                onchange="showFileName(this)"
+                            >
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="btn btn-back"
+                        onclick="previousStep()"
+                    >
+                        ← BACK
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-next"
+                    >
+                        ✦ ANALYZE MY PROFILE
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+
+        <!-- =========================
+             PROFILE PREVIEW
+        ========================= -->
+
+        <aside class="profile-card">
+
+            <div class="profile-title">
+                YOUR AI PROFILE
+            </div>
+
+
+            <div class="avatar"
+                 id="avatar">
+                ?
+            </div>
+
+
+            <div class="profile-name"
+                 id="previewName">
+                Your Name
+            </div>
+
+
+            <div class="profile-role"
+                 id="previewRole">
+                Career profile in progress
+            </div>
+
+
+            <div class="score-box">
+
+                <div class="score-header">
+
+                    <span>
+                        PROFILE COMPLETION
+                    </span>
+
+                    <span class="score"
+                          id="scoreText">
+                        20%
+                    </span>
+
+                </div>
+
+
+                <div class="score-bar">
+
+                    <div class="score-fill"
+                         id="scoreFill">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-list">
+
+
+                <div class="profile-item"
+                     id="checkPersonal">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    Personal information
+
+                </div>
+
+
+                <div class="profile-item"
+                     id="checkEducation">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    Education
+
+                </div>
+
+
+                <div class="profile-item"
+                     id="checkCareer">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    Career direction
+
+                </div>
+
+
+                <div class="profile-item"
+                     id="checkSkills">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    Skills & resume
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+
+    let currentStep = 1;
+
+
+    function updateUI() {
+
+        const steps =
+            document.querySelectorAll(".form-step");
+
+        steps.forEach(
+            step => step.classList.remove("active")
+        );
+
+        document
+            .getElementById(
+                "formStep" + currentStep
+            )
+            .classList.add("active");
+
+
+        document
+            .querySelectorAll(".step")
+            .forEach(
+                step => {
+                    step.classList.remove(
+                        "active",
+                        "completed"
+                    );
+                }
+            );
+
+
+        for (
+            let i = 1;
+            i <= 3;
+            i++
+        ) {
+
+            const indicator =
+                document.getElementById(
+                    "stepIndicator" + i
+                );
+
+            if (i < currentStep) {
+
+                indicator.classList.add(
+                    "completed"
+                );
+
+            }
+
+            if (i === currentStep) {
+
+                indicator.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+
+
+        const progress =
+            currentStep === 1
+                ? 33.33
+                : currentStep === 2
+                    ? 66.66
+                    : 100;
+
+
+        document
+            .getElementById("progressFill")
+            .style.width =
+            progress + "%";
+
+
+        document
+            .getElementById("stepNumber")
+            .textContent =
+            "STEP " +
+            currentStep +
+            " OF 3";
+
+
+        updateProfilePreview();
+
+    }
+
+
+
+    function validateCurrentStep() {
+
+        const current =
+            document.getElementById(
+                "formStep" + currentStep
+            );
+
+
+        const requiredFields =
+            current.querySelectorAll(
+                "[required]"
+            );
+
+
+        for (
+            const field of requiredFields
+        ) {
+
+            if (!field.value.trim()) {
+
+                field.focus();
+
+                return false;
+
+            }
+
+        }
+
+
+        return true;
+
+    }
+
+
+
+    function nextStep() {
+
+        if (!validateCurrentStep()) {
+
+            return;
+
+        }
+
+
+        if (currentStep < 3) {
+
+            currentStep++;
+
+            updateUI();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+
+
+
+    function previousStep() {
+
+        if (currentStep > 1) {
+
+            currentStep--;
+
+            updateUI();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+
+
+
+    function updateProfilePreview() {
+
+        const name =
+            document.getElementById(
+                "name"
+            ).value.trim();
+
+
+        const target =
+            document.querySelector(
+                '[name="target_job"]'
+            ).value;
+
+
+        const education =
+            document.querySelector(
+                '[name="education"]'
+            ).value;
+
+
+        const skills =
+            document.getElementById(
+                "skills"
+            ).value.trim();
+
+
+        const resume =
+            document.getElementById(
+                "resume"
+            ).files.length;
+
+
+        const careerGoal =
+            document.getElementById(
+                "career_goal"
+            ).value.trim();
+
+
+        const previewName =
+            document.getElementById(
+                "previewName"
+            );
+
+
+        const avatar =
+            document.getElementById(
+                "avatar"
+            );
+
+
+        const previewRole =
+            document.getElementById(
+                "previewRole"
+            );
+
+
+        if (name) {
+
+            previewName.textContent =
+                name;
+
+            avatar.textContent =
+                name
+                    .charAt(0)
+                    .toUpperCase();
+
+        }
+
+
+        if (target) {
+
+            previewRole.textContent =
+                target;
+
+        }
+
+
+        let completed = 1;
+
+
+        if (
+            name &&
+            document.getElementById("email").value
+        ) {
+
+            document
+                .getElementById(
+                    "checkPersonal"
+                )
+                .classList.add("done");
+
+            completed++;
+
+        }
+
+
+        if (
+            education &&
+            document.querySelector(
+                '[name="graduation_year"]'
+            ).value
+        ) {
+
+            document
+                .getElementById(
+                    "checkEducation"
+                )
+                .classList.add("done");
+
+            completed++;
+
+        }
+
+
+        if (target) {
+
+            document
+                .getElementById(
+                    "checkCareer"
+                )
+                .classList.add("done");
+
+            completed++;
+
+        }
+
+
+        if (
+            skills ||
+            careerGoal ||
+            resume
+        ) {
+
+            document
+                .getElementById(
+                    "checkSkills"
+                )
+                .classList.add("done");
+
+        }
+
+
+        const percent =
+            Math.min(
+                100,
+                Math.round(
+                    completed / 5 * 100
+                )
+            );
+
+
+        document
+            .getElementById(
+                "scoreText"
+            )
+            .textContent =
+            percent + "%";
+
+
+        document
+            .getElementById(
+                "scoreFill"
+            )
+            .style.width =
+            percent + "%";
+
+    }
+
+
+
+    function showFileName(input) {
+
+        if (
+            input.files &&
+            input.files.length
+        ) {
+
+            document
+                .getElementById(
+                    "uploadText"
+                )
+                .textContent =
+                input.files[0].name;
+
+        }
+
+        updateProfilePreview();
+
+    }
+
+
+
+    document
+        .getElementById("careerForm")
+        .addEventListener(
+            "input",
+            updateProfilePreview
+        );
+
+
+    document
+        .getElementById("careerForm")
+        .addEventListener(
+            "change",
+            updateProfilePreview
+        );
+
+
+    updateUI();
+
+</script>
+
+
+</body>
+
+</html>

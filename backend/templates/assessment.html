@@ -1,0 +1,3067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CareerAI - Assessment</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(37, 99, 235, 0.16),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(45, 212, 191, 0.08),
+                    transparent 25%
+                ),
+                #050816;
+
+            color: #ffffff;
+
+            min-height: 100vh;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           TOP NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            background:
+                rgba(5, 8, 22, 0.94);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            backdrop-filter: blur(20px);
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 23px;
+
+            font-weight: 800;
+        }
+
+
+        .brand-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #22d3ee
+                );
+
+            font-size: 18px;
+        }
+
+
+        .brand-text {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #64e7ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .role-badge {
+
+            padding: 9px 16px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(37,99,235,0.13);
+
+            border:
+                1px solid rgba(96,165,250,0.20);
+
+            color: #d4e5ff;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           MONITOR BAR
+        ===================================================== */
+
+        .monitor-bar {
+
+            min-height: 72px;
+
+            display: grid;
+
+            grid-template-columns: 1fr auto 1fr;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 10px 30px;
+
+            background:
+                #0b1123;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+
+        .monitor-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        #monitorVideo {
+
+            width: 88px;
+
+            height: 54px;
+
+            object-fit: cover;
+
+            border-radius: 9px;
+
+            border:
+                2px solid #31e6ae;
+
+            transform: scaleX(-1);
+
+            background: #020617;
+        }
+
+
+        .monitor-title {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+        }
+
+
+        .live-dot {
+
+            width: 9px;
+
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #ff405d;
+
+            box-shadow:
+                0 0 12px rgba(255,64,93,0.75);
+
+            animation:
+                pulse 1.3s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0%,100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .35;
+            }
+        }
+
+
+        .monitor-subtitle {
+
+            color: #4ee4b6;
+
+            font-size: 10px;
+
+            margin-top: 4px;
+        }
+
+
+        .violation-box {
+
+            justify-self: center;
+
+            padding: 9px 17px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,75,75,0.15);
+
+            border:
+                1px solid rgba(255,75,75,0.28);
+
+            color: #ff9aa7;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .violation-box.warning {
+
+            background:
+                rgba(255,180,60,0.14);
+
+            border-color:
+                rgba(255,180,60,0.28);
+
+            color: #ffc56d;
+        }
+
+
+        .violation-box.danger {
+
+            background:
+                rgba(255,40,60,0.24);
+
+            border-color:
+                rgba(255,40,60,0.50);
+
+            color: #ff7583;
+        }
+
+
+        .fullscreen-btn {
+
+            justify-self: end;
+
+            border: none;
+
+            padding: 10px 16px;
+
+            border-radius: 9px;
+
+            background:
+                #2563eb;
+
+            color: white;
+
+            font-weight: 700;
+
+            font-size: 11px;
+
+            cursor: pointer;
+        }
+
+
+        .fullscreen-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        /* =====================================================
+           TIMER BAR
+        ===================================================== */
+
+        .timer-bar {
+
+            position: sticky;
+
+            top: 70px;
+
+            z-index: 900;
+
+            background:
+                rgba(248,250,252,0.98);
+
+            color: #162033;
+
+            border-bottom:
+                1px solid #d9e0ea;
+
+            padding: 9px 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .timer-label {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #41516b;
+        }
+
+
+        .timer {
+
+            min-width: 110px;
+
+            padding: 8px 18px;
+
+            border:
+                2px solid #2563eb;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            color: #1d4ed8;
+
+            font-size: 19px;
+
+            font-weight: 800;
+
+            background: white;
+        }
+
+
+        .timer.warning {
+
+            border-color: #f59e0b;
+
+            color: #d97706;
+
+        }
+
+
+        .timer.danger {
+
+            border-color: #ef4444;
+
+            color: #dc2626;
+
+            animation: timerPulse 1s infinite;
+        }
+
+
+        @keyframes timerPulse {
+
+            50% {
+                opacity: .55;
+            }
+        }
+
+
+        /* =====================================================
+           MAIN LAYOUT
+        ===================================================== */
+
+        .page {
+
+            width: min(1380px, 96%);
+
+            margin: auto;
+
+            padding: 28px 0 60px;
+
+            display: grid;
+
+            grid-template-columns: 260px minmax(0, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position: sticky;
+
+            top: 145px;
+
+            height: calc(100vh - 170px);
+
+            overflow-y: auto;
+
+            background:
+                rgba(11,18,38,0.90);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 20px;
+
+            padding: 18px;
+
+            backdrop-filter: blur(18px);
+        }
+
+
+        .sidebar-title {
+
+            font-size: 12px;
+
+            color: #8ea0bd;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.2px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .progress-card {
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(37,99,235,0.08);
+
+            border:
+                1px solid rgba(96,165,250,0.13);
+
+            margin-bottom: 18px;
+        }
+
+
+        .progress-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 11px;
+
+            color: #a9b8cf;
+
+            margin-bottom: 9px;
+        }
+
+
+        .progress-number {
+
+            color: #58dcff;
+
+            font-weight: 800;
+        }
+
+
+        .progress-track {
+
+            height: 6px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #2dd4bf
+                );
+
+            transition: width .25s ease;
+        }
+
+
+        .section-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .section-btn {
+
+            width: 100%;
+
+            text-align: left;
+
+            border: none;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            color: #8d9cb5;
+
+            padding: 11px;
+
+            border-radius: 10px;
+
+            font-size: 10px;
+
+            cursor: pointer;
+
+            border:
+                1px solid transparent;
+
+            transition: .2s;
+        }
+
+
+        .section-btn:hover {
+
+            color: white;
+
+            background:
+                rgba(37,99,235,0.09);
+        }
+
+
+        .section-btn.active {
+
+            color: #66e3ff;
+
+            background:
+                rgba(37,99,235,0.12);
+
+            border-color:
+                rgba(65,190,255,0.20);
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+
+            min-width: 0;
+        }
+
+
+        .hero-card {
+
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(17,36,70,0.92),
+                    rgba(8,15,34,0.95)
+                );
+
+            border:
+                1px solid rgba(92,174,255,0.15);
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero-eyebrow {
+
+            color: #5ee1ff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.8px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .hero-card h1 {
+
+            font-size: 29px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .hero-card p {
+
+            color: #8b9ab5;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        .hero-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 18px;
+        }
+
+
+        .meta {
+
+            padding: 8px 12px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #a9b7cc;
+
+            font-size: 10px;
+        }
+
+
+        .meta strong {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           QUESTION CARD
+        ===================================================== */
+
+        .question-card {
+
+            background:
+                #ffffff;
+
+            color: #162033;
+
+            border-radius: 20px;
+
+            margin-bottom: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 18px 50px rgba(0,0,0,0.18);
+        }
+
+
+        .question-header {
+
+            padding: 17px 21px;
+
+            background:
+                #f8fafc;
+
+            border-bottom:
+                1px solid #e5e9f0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .question-number {
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .question-type {
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background:
+                #eaf2ff;
+
+            color: #2563eb;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+        }
+
+
+        .question-body {
+
+            padding: 23px;
+        }
+
+
+        .skill-tag {
+
+            display: inline-block;
+
+            margin-bottom: 13px;
+
+            padding: 5px 9px;
+
+            border-radius: 6px;
+
+            background:
+                #eef2ff;
+
+            color: #4f46e5;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+
+        .question-text {
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           MCQ OPTIONS
+        ===================================================== */
+
+        .options {
+
+            display: grid;
+
+            gap: 10px;
+        }
+
+
+        .option {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            border:
+                1px solid #dce3ec;
+
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            transition: .18s;
+
+            background: #ffffff;
+        }
+
+
+        .option:hover {
+
+            border-color: #79a7ff;
+
+            background: #f6f9ff;
+        }
+
+
+        .option input {
+
+            display: none;
+        }
+
+
+        .option-letter {
+
+            width: 30px;
+
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #f0f3f8;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            flex-shrink: 0;
+        }
+
+
+        .option-text {
+
+            font-size: 12px;
+
+            color: #334155;
+
+            line-height: 1.5;
+        }
+
+
+        .option.selected {
+
+            border-color: #2563eb;
+
+            background: #eff6ff;
+        }
+
+
+        .option.selected .option-letter {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           CODING AREA
+        ===================================================== */
+
+        .coding-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                270px;
+
+            gap: 14px;
+        }
+
+
+        .editor-box {
+
+            background:
+                #0b1120;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            border:
+                1px solid #1e293b;
+        }
+
+
+        .editor-top {
+
+            height: 39px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 13px;
+
+            background:
+                #111827;
+
+            color: #8290a8;
+
+            font-size: 9px;
+        }
+
+
+        .language {
+
+            color: #67e8f9;
+
+            font-weight: 700;
+        }
+
+
+        .code-editor {
+
+            width: 100%;
+
+            min-height: 245px;
+
+            resize: vertical;
+
+            border: none;
+
+            outline: none;
+
+            padding: 17px;
+
+            background:
+                #080d19;
+
+            color: #d8e4f4;
+
+            font-family:
+                "JetBrains Mono",
+                monospace;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .editor-actions {
+
+            padding: 10px;
+
+            display: flex;
+
+            gap: 8px;
+
+            background:
+                #111827;
+        }
+
+
+        .run-btn {
+
+            border: none;
+
+            padding: 9px 15px;
+
+            border-radius: 8px;
+
+            background:
+                #10b981;
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        .run-btn:hover {
+
+            background: #059669;
+        }
+
+
+        .run-btn:disabled {
+
+            opacity: .5;
+
+            cursor: wait;
+        }
+
+
+        .clear-btn {
+
+            border: none;
+
+            padding: 9px 15px;
+
+            border-radius: 8px;
+
+            background:
+                #263247;
+
+            color: #b9c6d8;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+
+        .output-box {
+
+            margin-top: 10px;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            background:
+                #07101e;
+
+            color: #9db1ca;
+
+            font-family:
+                "JetBrains Mono",
+                monospace;
+
+            font-size: 9px;
+
+            white-space: pre-wrap;
+
+            min-height: 40px;
+
+            display: none;
+        }
+
+
+        .output-box.success {
+
+            color: #5ee8ba;
+
+        }
+
+
+        .output-box.error {
+
+            color: #ff8997;
+
+        }
+
+
+        /* =====================================================
+           SQL SCHEMA
+        ===================================================== */
+
+        .schema-box {
+
+            padding: 15px;
+
+            background:
+                #0b1120;
+
+            border-radius: 13px;
+
+            color: #8fa2bd;
+
+            font-family:
+                "JetBrains Mono",
+                monospace;
+
+            font-size: 9px;
+
+            line-height: 1.7;
+
+            max-height: 260px;
+
+            overflow: auto;
+
+            white-space: pre-wrap;
+        }
+
+
+        .schema-title {
+
+            color: #67e8f9;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 17px;
+
+            margin-top: 10px;
+
+            background:
+                rgba(12,20,41,0.92);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 16px;
+        }
+
+
+        .nav-btn {
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: #d1dbea;
+
+            padding: 11px 17px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .nav-btn:hover {
+
+            background:
+                rgba(37,99,235,0.13);
+
+            border-color:
+                rgba(75,150,255,0.20);
+        }
+
+
+        .submit-btn {
+
+            border: none;
+
+            padding: 12px 21px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #14b8a6
+                );
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(37,99,235,0.20);
+        }
+
+
+        .submit-btn:hover {
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================================
+           HIDDEN
+        ===================================================== */
+
+        .question-hidden {
+
+            display: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .page {
+
+                grid-template-columns: 210px minmax(0,1fr);
+
+            }
+
+            .coding-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .monitor-bar {
+
+                grid-template-columns: 1fr auto;
+
+            }
+
+            .violation-box {
+
+                display: none;
+
+            }
+
+            .page {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .sidebar {
+
+                position: static;
+
+                height: auto;
+
+            }
+
+            .section-list {
+
+                display: grid;
+
+                grid-template-columns: repeat(
+                    2,
+                    1fr
+                );
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 14px;
+
+            }
+
+            .role-badge {
+
+                display: none;
+
+            }
+
+            .monitor-bar {
+
+                padding: 8px 14px;
+
+            }
+
+            .fullscreen-btn {
+
+                display: none;
+
+            }
+
+            .timer-bar {
+
+                padding: 8px 14px;
+
+            }
+
+            .page {
+
+                width: 94%;
+
+                padding-top: 18px;
+
+            }
+
+            .hero-card {
+
+                padding: 20px;
+
+            }
+
+            .question-body {
+
+                padding: 17px;
+
+            }
+
+            .navigation {
+
+                flex-wrap: wrap;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🤖
+            </div>
+
+            <div class="brand-text">
+                CareerAI
+            </div>
+
+        </div>
+
+
+        <div class="role-badge">
+
+            🎯 {{ target_role }}
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         LIVE MONITORING
+    ===================================================== -->
+
+    <section class="monitor-bar">
+
+
+        <div class="monitor-left">
+
+            <video
+                id="monitorVideo"
+                autoplay
+                muted
+                playsinline
+            ></video>
+
+
+            <div>
+
+                <div class="monitor-title">
+
+                    <span class="live-dot"></span>
+
+                    LIVE ASSESSMENT MONITORING
+
+                </div>
+
+                <div class="monitor-subtitle">
+
+                    Camera + microphone active
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="violation-box"
+            id="violationBox"
+        >
+
+            Violations: 0 / 3
+
+        </div>
+
+
+        <button
+            class="fullscreen-btn"
+            type="button"
+            onclick="enterFullscreen()"
+        >
+
+            ⛶ Fullscreen
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TIMER
+    ===================================================== -->
+
+    <section class="timer-bar">
+
+        <div class="timer-label">
+
+            ⏱ Time Remaining
+
+        </div>
+
+
+        <div
+            class="timer"
+            id="timer"
+        >
+
+            --:--
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <div class="sidebar-title">
+                Assessment Progress
+            </div>
+
+
+            <div class="progress-card">
+
+                <div class="progress-top">
+
+                    <span>
+                        Questions
+                    </span>
+
+                    <span
+                        class="progress-number"
+                        id="progressText"
+                    >
+                        0 / {{ total_questions }}
+                    </span>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-title">
+                Sections
+            </div>
+
+
+            <div class="section-list">
+
+                {% for section in sections %}
+
+                    <button
+                        type="button"
+                        class="section-btn"
+                        onclick="jumpToSection({{ loop.index0 }})"
+                    >
+
+                        {{ loop.index }}.
+                        {{ section }}
+
+                    </button>
+
+                {% endfor %}
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================= -->
+
+        <section class="content">
+
+
+            <!-- HERO -->
+
+            <div class="hero-card">
+
+                <div class="hero-eyebrow">
+                    AI CAREER READINESS ASSESSMENT
+                </div>
+
+
+                <h1>
+                    Technical Assessment
+                </h1>
+
+
+                <p>
+
+                    Complete the assessment honestly and independently.
+                    Your performance will be used to measure your technical
+                    readiness for the selected career role.
+
+                </p>
+
+
+                <div class="hero-meta">
+
+                    <div class="meta">
+
+                        Target Role:
+                        <strong>
+                            {{ target_role }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        Questions:
+                        <strong>
+                            {{ total_questions }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        Duration:
+                        <strong>
+                            {{ duration_minutes }} minutes
+                        </strong>
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        Monitoring:
+                        <strong>
+                            Active
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ASSESSMENT FORM
+            ================================================= -->
+
+            <form
+                method="POST"
+                action="{{ url_for('submit_assessment') }}"
+                id="assessmentForm"
+            >
+
+
+                {% for q in questions %}
+
+                    <article
+                        class="question-card"
+                        data-question="{{ loop.index0 }}"
+                        data-section="{{ q.section }}"
+                    >
+
+
+                        <div class="question-header">
+
+
+                            <div class="question-number">
+
+                                QUESTION
+                                {{ loop.index }}
+                                /
+                                {{ total_questions }}
+
+                            </div>
+
+
+                            <div class="question-type">
+
+                                {% if q.type == "coding" %}
+
+                                    Python Coding
+
+                                {% elif q.type == "sql" %}
+
+                                    SQL
+
+                                {% else %}
+
+                                    MCQ
+
+                                {% endif %}
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="question-body">
+
+
+                            <div class="skill-tag">
+
+                                {{ q.skill }}
+
+                            </div>
+
+
+                            <div class="question-text">
+
+                                {{ q.question }}
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 MCQ
+                            ================================= -->
+
+                            {% if q.type == "mcq" or not q.type %}
+
+
+                                <div class="options">
+
+                                    {% for option in q.options %}
+
+                                        <label class="option">
+
+                                            <input
+                                                type="radio"
+                                                name="question_{{ loop.index0 }}"
+                                                value="{{ option }}"
+                                                onchange="selectOption(this)"
+                                            >
+
+                                            <span class="option-letter">
+
+                                                {% if loop.index0 == 0 %}
+                                                    A
+                                                {% elif loop.index0 == 1 %}
+                                                    B
+                                                {% elif loop.index0 == 2 %}
+                                                    C
+                                                {% else %}
+                                                    D
+                                                {% endif %}
+
+                                            </span>
+
+
+                                            <span class="option-text">
+
+                                                {{ option }}
+
+                                            </span>
+
+                                        </label>
+
+                                    {% endfor %}
+
+                                </div>
+
+
+                            {% else %}
+
+
+                                <!-- =================================
+                                     CODING / SQL
+                                ================================= -->
+
+                                <div class="coding-layout">
+
+
+                                    <div>
+
+
+                                        <div class="editor-box">
+
+
+                                            <div class="editor-top">
+
+                                                <span>
+
+                                                    {% if q.type == "sql" %}
+                                                        SQL Editor
+                                                    {% else %}
+                                                        Python Editor
+                                                    {% endif %}
+
+                                                </span>
+
+
+                                                <span class="language">
+
+                                                    {{ q.language or "Python" }}
+
+                                                </span>
+
+                                            </div>
+
+
+                                            <textarea
+                                                class="code-editor"
+                                                name="question_{{ loop.index0 }}"
+                                                id="code_{{ loop.index0 }}"
+                                                spellcheck="false"
+                                            >{{ q.starter_code or "" }}</textarea>
+
+
+                                            <div class="editor-actions">
+
+
+                                                <button
+                                                    type="button"
+                                                    class="run-btn"
+                                                    onclick="runCode({{ loop.index0 }}, '{{ q.type }}')"
+                                                >
+
+                                                    ▶ Run Code
+
+                                                </button>
+
+
+                                                <button
+                                                    type="button"
+                                                    class="clear-btn"
+                                                    onclick="clearCode({{ loop.index0 }})"
+                                                >
+
+                                                    Clear
+
+                                                </button>
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div
+                                            class="output-box"
+                                            id="output_{{ loop.index0 }}"
+                                        ></div>
+
+
+                                    </div>
+
+
+
+                                    <!-- SQL SCHEMA -->
+
+                                    {% if q.type == "sql" and q.sql_schema %}
+
+                                        <div class="schema-box">
+
+                                            <div class="schema-title">
+
+                                                🗄 Database Schema
+
+                                            </div>
+
+                                            {{ q.sql_schema }}
+
+                                        </div>
+
+                                    {% endif %}
+
+
+                                </div>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </article>
+
+                {% endfor %}
+
+
+
+                <!-- =================================================
+                     NAVIGATION
+                ================================================= -->
+
+                <div class="navigation">
+
+
+                    <button
+                        type="button"
+                        class="nav-btn"
+                        onclick="previousQuestion()"
+                    >
+
+                        ← Previous
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="nav-btn"
+                        onclick="nextQuestion()"
+                    >
+
+                        Next →
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                        id="submitBtn"
+                    >
+
+                        Submit Assessment ✓
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =====================================================
+           BASIC STATE
+        ===================================================== */
+
+        const totalQuestions =
+            {{ total_questions }};
+
+        const assessmentDeadline =
+            "{{ assessment_deadline }}";
+
+        let currentQuestion = 0;
+
+        let violationCount = 0;
+
+        const MAX_VIOLATIONS = 3;
+
+        let assessmentSubmitting = false;
+
+
+
+        /* =====================================================
+           QUESTION CARDS
+        ===================================================== */
+
+        const questionCards =
+            Array.from(
+                document.querySelectorAll(".question-card")
+            );
+
+
+        function showQuestion(index) {
+
+            if (index < 0) {
+                index = 0;
+            }
+
+            if (index >= questionCards.length) {
+                index = questionCards.length - 1;
+            }
+
+
+            currentQuestion = index;
+
+
+            questionCards.forEach(
+                (card, i) => {
+
+                    if (i === index) {
+
+                        card.classList.remove(
+                            "question-hidden"
+                        );
+
+                    }
+                    else {
+
+                        card.classList.add(
+                            "question-hidden"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            updateProgress();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function nextQuestion() {
+
+            if (
+                currentQuestion <
+                questionCards.length - 1
+            ) {
+
+                showQuestion(
+                    currentQuestion + 1
+                );
+
+            }
+
+        }
+
+
+        function previousQuestion() {
+
+            if (currentQuestion > 0) {
+
+                showQuestion(
+                    currentQuestion - 1
+                );
+
+            }
+
+        }
+
+
+        function jumpToSection(sectionIndex) {
+
+            const buttons =
+                document.querySelectorAll(
+                    ".section-btn"
+                );
+
+
+            const sectionNames = [];
+
+            questionCards.forEach(
+                card => {
+
+                    const name =
+                        card.dataset.section;
+
+                    if (
+                        !sectionNames.includes(name)
+                    ) {
+
+                        sectionNames.push(name);
+
+                    }
+
+                }
+            );
+
+
+            const selectedSection =
+                sectionNames[sectionIndex];
+
+
+            const questionIndex =
+                questionCards.findIndex(
+                    card =>
+                        card.dataset.section ===
+                        selectedSection
+                );
+
+
+            if (questionIndex >= 0) {
+
+                showQuestion(
+                    questionIndex
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        function updateProgress() {
+
+            const answered =
+                document.querySelectorAll(
+                    "#assessmentForm input[type='radio']:checked"
+                ).length
+                +
+                document.querySelectorAll(
+                    "#assessmentForm textarea"
+                ).length;
+
+
+            document.getElementById(
+                "progressText"
+            ).textContent =
+                (currentQuestion + 1)
+                +
+                " / "
+                +
+                totalQuestions;
+
+
+            const percentage =
+                (
+                    (currentQuestion + 1)
+                    /
+                    totalQuestions
+                ) * 100;
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                percentage + "%";
+
+
+            const sectionButtons =
+                document.querySelectorAll(
+                    ".section-btn"
+                );
+
+
+            sectionButtons.forEach(
+                button =>
+                    button.classList.remove(
+                        "active"
+                    )
+            );
+
+
+            const currentSection =
+                questionCards[
+                    currentQuestion
+                ].dataset.section;
+
+
+            const sectionNames = [];
+
+
+            questionCards.forEach(
+                card => {
+
+                    if (
+                        !sectionNames.includes(
+                            card.dataset.section
+                        )
+                    ) {
+
+                        sectionNames.push(
+                            card.dataset.section
+                        );
+
+                    }
+
+                }
+            );
+
+
+            const sectionIndex =
+                sectionNames.indexOf(
+                    currentSection
+                );
+
+
+            if (
+                sectionButtons[sectionIndex]
+            ) {
+
+                sectionButtons[
+                    sectionIndex
+                ].classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MCQ SELECTION
+        ===================================================== */
+
+        function selectOption(input) {
+
+            const options =
+                input
+                    .closest(".options")
+                    .querySelectorAll(
+                        ".option"
+                    );
+
+
+            options.forEach(
+                option =>
+                    option.classList.remove(
+                        "selected"
+                    )
+            );
+
+
+            input
+                .closest(".option")
+                .classList.add(
+                    "selected"
+                );
+
+
+            updateProgress();
+
+        }
+
+
+
+        /* =====================================================
+           RUN PYTHON / SQL
+        ===================================================== */
+
+        async function runCode(
+            questionIndex,
+            questionType
+        ) {
+
+
+            const editor =
+                document.getElementById(
+                    "code_" + questionIndex
+                );
+
+
+            const output =
+                document.getElementById(
+                    "output_" + questionIndex
+                );
+
+
+            const buttons =
+                questionCards[
+                    questionIndex
+                ].querySelectorAll(
+                    ".run-btn"
+                );
+
+
+            const code =
+                editor.value;
+
+
+            if (!code.trim()) {
+
+                output.style.display =
+                    "block";
+
+                output.className =
+                    "output-box error";
+
+                output.textContent =
+                    "Please write your answer before running.";
+
+                return;
+
+            }
+
+
+            buttons.forEach(
+                button =>
+                    button.disabled = true
+            );
+
+
+            output.style.display =
+                "block";
+
+            output.className =
+                "output-box";
+
+            output.textContent =
+                "Running your code...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "{{ url_for('run_assessment_code') }}",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                question_index:
+                                    questionIndex,
+
+                                code:
+                                    code
+
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.ok) {
+
+                    output.className =
+                        "output-box error";
+
+                    output.textContent =
+                        data.message ||
+                        "Unable to run code.";
+
+                }
+                else {
+
+                    if (data.correct) {
+
+                        output.className =
+                            "output-box success";
+
+                    }
+                    else {
+
+                        output.className =
+                            "output-box error";
+
+                    }
+
+
+                    output.textContent =
+                        data.message
+                        +
+                        "\n\n"
+                        +
+                        (
+                            data.output ||
+                            "No output."
+                        );
+
+                }
+
+            }
+            catch (error) {
+
+                output.className =
+                    "output-box error";
+
+                output.textContent =
+                    "Unable to connect to the assessment server.";
+
+            }
+
+
+            buttons.forEach(
+                button =>
+                    button.disabled = false
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CLEAR CODE
+        ===================================================== */
+
+        function clearCode(index) {
+
+            const editor =
+                document.getElementById(
+                    "code_" + index
+                );
+
+
+            const output =
+                document.getElementById(
+                    "output_" + index
+                );
+
+
+            editor.value = "";
+
+
+            output.style.display =
+                "none";
+
+        }
+
+
+
+        /* =====================================================
+           FULLSCREEN
+        ===================================================== */
+
+        async function enterFullscreen() {
+
+            try {
+
+                if (
+                    !document.fullscreenElement
+                ) {
+
+                    await document.documentElement
+                        .requestFullscreen();
+
+                }
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Fullscreen unavailable"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           VIOLATION REPORTING
+        ===================================================== */
+
+        async function reportViolation(
+            reason
+        ) {
+
+
+            if (assessmentSubmitting) {
+                return;
+            }
+
+
+            violationCount++;
+
+
+            updateViolationUI();
+
+
+            try {
+
+                await fetch(
+                    "{{ url_for('assessment_violation') }}",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            reason: reason
+                        })
+
+                    }
+                );
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Violation logging failed"
+                );
+
+            }
+
+
+            if (
+                violationCount >=
+                MAX_VIOLATIONS
+            ) {
+
+                alert(
+                    "Maximum assessment violations reached. Your assessment will now be submitted."
+                );
+
+
+                assessmentSubmitting =
+                    true;
+
+
+                document
+                    .getElementById(
+                        "assessmentForm"
+                    )
+                    .submit();
+
+            }
+
+        }
+
+
+
+        function updateViolationUI() {
+
+            const box =
+                document.getElementById(
+                    "violationBox"
+                );
+
+
+            box.textContent =
+                "Violations: "
+                +
+                violationCount
+                +
+                " / "
+                +
+                MAX_VIOLATIONS;
+
+
+            box.classList.remove(
+                "warning",
+                "danger"
+            );
+
+
+            if (
+                violationCount === 1
+            ) {
+
+                box.classList.add(
+                    "warning"
+                );
+
+            }
+
+
+            if (
+                violationCount >= 2
+            ) {
+
+                box.classList.add(
+                    "danger"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           TAB / WINDOW CHANGE
+        ===================================================== */
+
+        document.addEventListener(
+            "visibilitychange",
+            function() {
+
+                if (
+                    document.hidden &&
+                    !assessmentSubmitting
+                ) {
+
+                    reportViolation(
+                        "Left the assessment tab"
+                    );
+
+                }
+
+            }
+        );
+
+
+        window.addEventListener(
+            "blur",
+            function() {
+
+                if (
+                    !assessmentSubmitting
+                ) {
+
+                    reportViolation(
+                        "Assessment window lost focus"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           FULLSCREEN VIOLATION
+        ===================================================== */
+
+        document.addEventListener(
+            "fullscreenchange",
+            function() {
+
+                if (
+                    !document.fullscreenElement &&
+                    !assessmentSubmitting
+                ) {
+
+                    reportViolation(
+                        "Exited fullscreen mode"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           COPY / CUT / PASTE
+        ===================================================== */
+
+        document.addEventListener(
+            "copy",
+            function(event) {
+
+                event.preventDefault();
+
+                reportViolation(
+                    "Copy attempt"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "cut",
+            function(event) {
+
+                event.preventDefault();
+
+                reportViolation(
+                    "Cut attempt"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "paste",
+            function(event) {
+
+                event.preventDefault();
+
+                reportViolation(
+                    "Paste attempt"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "contextmenu",
+            function(event) {
+
+                event.preventDefault();
+
+                reportViolation(
+                    "Right-click attempt"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CAMERA
+        ===================================================== */
+
+        async function startMonitoring() {
+
+            try {
+
+                const stream =
+                    await navigator.mediaDevices
+                        .getUserMedia({
+                            video: true,
+                            audio: true
+                        });
+
+
+                const video =
+                    document.getElementById(
+                        "monitorVideo"
+                    );
+
+
+                video.srcObject =
+                    stream;
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Camera monitoring unavailable"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           TIMER
+        ===================================================== */
+
+        function startTimer() {
+
+            const timer =
+                document.getElementById(
+                    "timer"
+                );
+
+
+            const deadline =
+                new Date(
+                    assessmentDeadline
+                ).getTime();
+
+
+            function updateTimer() {
+
+                const now =
+                    new Date().getTime();
+
+
+                let remaining =
+                    Math.max(
+                        0,
+                        deadline - now
+                    );
+
+
+                const totalSeconds =
+                    Math.floor(
+                        remaining / 1000
+                    );
+
+
+                const hours =
+                    Math.floor(
+                        totalSeconds / 3600
+                    );
+
+
+                const minutes =
+                    Math.floor(
+                        (totalSeconds % 3600)
+                        / 60
+                    );
+
+
+                const seconds =
+                    totalSeconds % 60;
+
+
+                timer.textContent =
+
+                    String(hours)
+                        .padStart(2, "0")
+                    +
+                    ":"
+                    +
+                    String(minutes)
+                        .padStart(2, "0")
+                    +
+                    ":"
+                    +
+                    String(seconds)
+                        .padStart(2, "0");
+
+
+                timer.classList.remove(
+                    "warning",
+                    "danger"
+                );
+
+
+                if (
+                    totalSeconds <= 600
+                ) {
+
+                    timer.classList.add(
+                        "warning"
+                    );
+
+                }
+
+
+                if (
+                    totalSeconds <= 120
+                ) {
+
+                    timer.classList.remove(
+                        "warning"
+                    );
+
+                    timer.classList.add(
+                        "danger"
+                    );
+
+                }
+
+
+                if (
+                    totalSeconds <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    if (
+                        !assessmentSubmitting
+                    ) {
+
+                        assessmentSubmitting =
+                            true;
+
+                        alert(
+                            "Assessment time has expired. Your assessment will now be submitted."
+                        );
+
+
+                        document
+                            .getElementById(
+                                "assessmentForm"
+                            )
+                            .submit();
+
+                    }
+
+                }
+
+            }
+
+
+            updateTimer();
+
+
+            const timerInterval =
+                setInterval(
+                    updateTimer,
+                    1000
+                );
+
+        }
+
+
+
+        /* =====================================================
+           SUBMIT CONFIRMATION
+        ===================================================== */
+
+        document
+            .getElementById(
+                "assessmentForm"
+            )
+            .addEventListener(
+                "submit",
+                function(event) {
+
+
+                    if (
+                        assessmentSubmitting
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const confirmed =
+                        confirm(
+                            "Are you sure you want to submit the assessment?\n\nYou will not be able to change your answers after submission."
+                        );
+
+
+                    if (!confirmed) {
+
+                        event.preventDefault();
+
+                        return;
+
+                    }
+
+
+                    assessmentSubmitting =
+                        true;
+
+
+                    document
+                        .getElementById(
+                            "submitBtn"
+                        )
+                        .textContent =
+                        "Submitting...";
+
+
+                    document
+                        .getElementById(
+                            "submitBtn"
+                        )
+                        .disabled = true;
+
+                }
+            );
+
+
+
+        /* =====================================================
+           INITIALIZE
+        ===================================================== */
+
+        showQuestion(0);
+
+        startTimer();
+
+        startMonitoring();
+
+        updateViolationUI();
+
+
+        /* =====================================================
+           BEFORE UNLOAD
+        ===================================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            function(event) {
+
+                if (
+                    !assessmentSubmitting
+                ) {
+
+                    event.preventDefault();
+
+                    event.returnValue = "";
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

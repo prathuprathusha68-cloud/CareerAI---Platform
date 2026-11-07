@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>System Check | CareerAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            color: #ffffff;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 5%,
+                    rgba(0,153,255,0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(0,255,220,0.10),
+                    transparent 28%
+                ),
+                #050816;
+        }
+
+
+        /* GRID */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+
+            height: 76px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(5,8,22,0.82);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+
+            backdrop-filter: blur(20px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #5de1ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .role-badge {
+
+            padding: 9px 15px;
+
+            border-radius: 25px;
+
+            color: #b9c7dc;
+
+            background:
+                rgba(65,210,255,0.08);
+
+            border:
+                1px solid rgba(65,210,255,0.16);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* MAIN */
+
+        .container {
+
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding: 48px 0 70px;
+        }
+
+
+        .eyebrow {
+
+            color: #55ddff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.8px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .eyebrow::before {
+
+            content: "✦ ";
+
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(32px, 5vw, 50px);
+
+            line-height: 1.08;
+
+            margin-bottom: 12px;
+        }
+
+
+        .gradient {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #68ddff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .subtitle {
+
+            color: #93a2bc;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            max-width: 750px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* PROGRESS */
+
+        .progress-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 16px 20px;
+
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(15,28,51,0.78);
+
+            border:
+                1px solid rgba(80,190,255,0.12);
+        }
+
+
+        .progress-label {
+
+            color: #8b9ab4;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+        }
+
+
+        .progress-track {
+
+            flex: 1;
+
+            height: 7px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #42bfff,
+                    #58f0cb
+                );
+
+            border-radius: 20px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .progress-percent {
+
+            color: #54ddff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            min-width: 35px;
+
+            text-align: right;
+        }
+
+
+        /* GRID */
+
+        .check-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                0.95fr;
+
+            gap: 22px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,31,58,0.84),
+                    rgba(8,14,31,0.93)
+                );
+
+            border:
+                1px solid rgba(110,180,255,0.13);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.28);
+
+            backdrop-filter: blur(18px);
+        }
+
+
+        /* CAMERA */
+
+        .camera-card {
+
+            padding: 26px;
+        }
+
+
+        .card-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .heading-icon {
+
+            width: 39px;
+
+            height: 39px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+                rgba(60,210,255,0.09);
+
+            border:
+                1px solid rgba(60,210,255,0.14);
+
+            font-size: 19px;
+        }
+
+
+        .card-heading h2 {
+
+            font-size: 17px;
+
+        }
+
+
+        .camera-box {
+
+            height: 315px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            background:
+                #070d1d;
+
+            border:
+                1px solid rgba(100,180,255,0.12);
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        #cameraPreview {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: none;
+
+            transform: scaleX(-1);
+        }
+
+
+        .camera-placeholder {
+
+            text-align: center;
+
+            color: #74839e;
+
+        }
+
+
+        .camera-icon {
+
+            font-size: 43px;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .camera-placeholder p {
+
+            font-size: 12px;
+
+        }
+
+
+        .camera-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-top: 15px;
+
+            padding: 12px 14px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            color: #8d9bb2;
+
+            font-size: 11px;
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #ffb65e;
+        }
+
+
+        .status-dot.success {
+
+            background: #4ee4b6;
+
+            box-shadow:
+                0 0 10px rgba(78,228,182,0.55);
+        }
+
+
+        .status-dot.error {
+
+            background: #ff6878;
+
+        }
+
+
+        /* SYSTEM CHECK */
+
+        .system-card {
+
+            padding: 26px;
+
+        }
+
+
+        .system-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+
+        }
+
+
+        .check-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 16px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.055);
+
+            transition: 0.2s ease;
+        }
+
+
+        .check-item:hover {
+
+            border-color:
+                rgba(65,210,255,0.17);
+
+            background:
+                rgba(65,180,255,0.045);
+        }
+
+
+        .check-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .check-icon {
+
+            width: 37px;
+
+            height: 37px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(65,210,255,0.07);
+
+            color: #60dcff;
+
+            font-size: 17px;
+        }
+
+
+        .check-name {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+
+        .check-description {
+
+            color: #687792;
+
+            font-size: 9px;
+        }
+
+
+        .check-status {
+
+            padding: 7px 10px;
+
+            border-radius: 20px;
+
+            color: #ffbd68;
+
+            background:
+                rgba(255,185,90,0.07);
+
+            border:
+                1px solid rgba(255,185,90,0.12);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .check-status.success {
+
+            color: #55e2b6;
+
+            background:
+                rgba(70,225,180,0.07);
+
+            border-color:
+                rgba(70,225,180,0.13);
+        }
+
+
+        .check-status.error {
+
+            color: #ff7180;
+
+            background:
+                rgba(255,90,110,0.07);
+
+            border-color:
+                rgba(255,90,110,0.13);
+        }
+
+
+        /* NOTICE */
+
+        .notice {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 13px;
+
+            padding: 17px 19px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,180,70,0.045);
+
+            border:
+                1px solid rgba(255,180,70,0.12);
+
+            margin-bottom: 22px;
+        }
+
+
+        .notice-icon {
+
+            font-size: 17px;
+
+        }
+
+
+        .notice-title {
+
+            color: #ffc477;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .notice-text {
+
+            color: #8491a8;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* BUTTON */
+
+        .action-card {
+
+            padding: 25px 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(20,55,82,0.72),
+                    rgba(9,21,39,0.92)
+                );
+
+            border:
+                1px solid rgba(65,215,255,0.16);
+
+            border-radius: 22px;
+        }
+
+
+        .action-title {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .action-text {
+
+            color: #7887a1;
+
+            font-size: 10px;
+
+        }
+
+
+        .continue-btn {
+
+            border: none;
+
+            padding: 14px 25px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #45d9ff,
+                    #63f4cf
+                );
+
+            color: #03101b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 10px 30px rgba(49,210,255,0.18);
+
+            transition: 0.25s ease;
+        }
+
+
+        .continue-btn:hover:not(:disabled) {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 38px rgba(49,210,255,0.30);
+        }
+
+
+        .continue-btn:disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            background:
+                #506078;
+
+            color: #d5dce7;
+
+            box-shadow: none;
+        }
+
+
+        .footer {
+
+            text-align: center;
+
+            color: #4f5e79;
+
+            font-size: 10px;
+
+            margin-top: 25px;
+        }
+
+
+        @media (max-width: 850px) {
+
+            .check-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 5%;
+
+            }
+
+            .container {
+
+                width: 94%;
+
+                padding-top: 32px;
+
+            }
+
+            .role-badge {
+
+                display: none;
+
+            }
+
+            .camera-card,
+            .system-card {
+
+                padding: 20px;
+
+            }
+
+            .camera-box {
+
+                height: 250px;
+
+            }
+
+            .action-card {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+            .continue-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CareerAI
+        </div>
+
+        <div class="role-badge">
+            🎯 {{ target_role }}
+        </div>
+
+    </nav>
+
+
+
+    <main class="container">
+
+
+        <div class="eyebrow">
+            SECURE ASSESSMENT ENVIRONMENT
+        </div>
+
+
+        <h1>
+            System
+            <span class="gradient">
+                Verification
+            </span>
+        </h1>
+
+
+        <p class="subtitle">
+
+            Before entering your 64-question career readiness assessment,
+            CareerAI needs to verify your camera, microphone, browser
+            permissions and fullscreen capability.
+
+        </p>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-card">
+
+            <div class="progress-label">
+                System readiness
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+
+            </div>
+
+            <div
+                class="progress-percent"
+                id="progressPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+
+        <!-- MAIN CHECK AREA -->
+
+        <section class="check-grid">
+
+
+            <!-- CAMERA -->
+
+            <div class="card camera-card">
+
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">
+                        📷
+                    </div>
+
+                    <h2>
+                        Camera Verification
+                    </h2>
+
+                </div>
+
+
+                <div class="camera-box">
+
+                    <video
+                        id="cameraPreview"
+                        autoplay
+                        muted
+                        playsinline
+                    ></video>
+
+
+                    <div
+                        class="camera-placeholder"
+                        id="cameraPlaceholder"
+                    >
+
+                        <div class="camera-icon">
+                            📷
+                        </div>
+
+                        <p>
+                            Camera preview will appear here
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="camera-status">
+
+                    <span
+                        class="status-dot"
+                        id="cameraDot"
+                    ></span>
+
+                    <span id="cameraMessage">
+
+                        Waiting for camera permission
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SYSTEM -->
+
+            <div class="card system-card">
+
+
+                <div class="card-heading">
+
+                    <div class="heading-icon">
+                        ⚙️
+                    </div>
+
+                    <h2>
+                        System Compatibility
+                    </h2>
+
+                </div>
+
+
+                <div class="system-list">
+
+
+                    <!-- BROWSER -->
+
+                    <div class="check-item">
+
+
+                        <div class="check-left">
+
+
+                            <div class="check-icon">
+                                🌐
+                            </div>
+
+
+                            <div>
+
+                                <div class="check-name">
+                                    Browser
+                                </div>
+
+                                <div class="check-description">
+                                    Supported modern browser
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="check-status"
+                            id="browserStatus"
+                        >
+                            Checking
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CAMERA -->
+
+                    <div class="check-item">
+
+
+                        <div class="check-left">
+
+
+                            <div class="check-icon">
+                                📷
+                            </div>
+
+
+                            <div>
+
+                                <div class="check-name">
+                                    Camera
+                                </div>
+
+                                <div class="check-description">
+                                    Camera permission
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="check-status"
+                            id="cameraStatus"
+                        >
+                            Waiting
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- MICROPHONE -->
+
+                    <div class="check-item">
+
+
+                        <div class="check-left">
+
+
+                            <div class="check-icon">
+                                🎙️
+                            </div>
+
+
+                            <div>
+
+                                <div class="check-name">
+                                    Microphone
+                                </div>
+
+                                <div class="check-description">
+                                    Microphone availability
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="check-status"
+                            id="microphoneStatus"
+                        >
+                            Waiting
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- FULLSCREEN -->
+
+                    <div class="check-item">
+
+
+                        <div class="check-left">
+
+
+                            <div class="check-icon">
+                                ⛶
+                            </div>
+
+
+                            <div>
+
+                                <div class="check-name">
+                                    Fullscreen
+                                </div>
+
+                                <div class="check-description">
+                                    Required during assessment
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="check-status"
+                            id="fullscreenStatus"
+                        >
+                            Waiting
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PERMISSIONS -->
+
+                    <div class="check-item">
+
+
+                        <div class="check-left">
+
+
+                            <div class="check-icon">
+                                🔐
+                            </div>
+
+
+                            <div>
+
+                                <div class="check-name">
+                                    Permissions
+                                </div>
+
+                                <div class="check-description">
+                                    Browser access permissions
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="check-status"
+                            id="permissionStatus"
+                        >
+                            Waiting
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- NOTICE -->
+
+        <div class="notice">
+
+            <div class="notice-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <div class="notice-title">
+                    Important
+                </div>
+
+                <div class="notice-text">
+
+                    Please allow camera and microphone access when your
+                    browser asks for permission. Fullscreen mode will be
+                    required once the assessment starts.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTION -->
+
+        <form
+            id="systemCheckForm"
+            method="POST"
+            action="{{ url_for('complete_system_check') }}"
+        >
+
+            <input
+                type="hidden"
+                name="camera_ok"
+                id="cameraOk"
+                value="false"
+            >
+
+            <input
+                type="hidden"
+                name="microphone_ok"
+                id="microphoneOk"
+                value="false"
+            >
+
+            <input
+                type="hidden"
+                name="fullscreen_ok"
+                id="fullscreenOk"
+                value="false"
+            >
+
+            <input
+                type="hidden"
+                name="permissions_ok"
+                id="permissionsOk"
+                value="false"
+            >
+
+
+            <div class="action-card">
+
+
+                <div>
+
+                    <div class="action-title">
+                        Ready to enter the assessment?
+                    </div>
+
+                    <div class="action-text">
+                        Complete every system check before continuing.
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="continue-btn"
+                    id="continueBtn"
+                    disabled
+                >
+                    Continue to Assessment →
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+
+        <div class="footer">
+
+            CareerAI • Secure Career Readiness Assessment
+
+        </div>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* ==========================================
+           STATE
+        ========================================== */
+
+        let cameraOK = false;
+        let microphoneOK = false;
+        let fullscreenOK = false;
+        let permissionsOK = false;
+
+        let mediaStream = null;
+
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const cameraPreview =
+            document.getElementById("cameraPreview");
+
+        const cameraPlaceholder =
+            document.getElementById("cameraPlaceholder");
+
+        const cameraDot =
+            document.getElementById("cameraDot");
+
+        const cameraMessage =
+            document.getElementById("cameraMessage");
+
+        const cameraStatus =
+            document.getElementById("cameraStatus");
+
+        const microphoneStatus =
+            document.getElementById("microphoneStatus");
+
+        const browserStatus =
+            document.getElementById("browserStatus");
+
+        const fullscreenStatus =
+            document.getElementById("fullscreenStatus");
+
+        const permissionStatus =
+            document.getElementById("permissionStatus");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const progressPercent =
+            document.getElementById("progressPercent");
+
+        const continueBtn =
+            document.getElementById("continueBtn");
+
+
+
+        /* ==========================================
+           STATUS HELPER
+        ========================================== */
+
+        function setStatus(element, text, type) {
+
+            element.textContent = text;
+
+            element.classList.remove(
+                "success",
+                "error"
+            );
+
+            if (type) {
+
+                element.classList.add(type);
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           UPDATE PROGRESS
+        ========================================== */
+
+        function updateProgress() {
+
+            let completed = 0;
+
+            if (browserOK) {
+                completed++;
+            }
+
+            if (cameraOK) {
+                completed++;
+            }
+
+            if (microphoneOK) {
+                completed++;
+            }
+
+            if (fullscreenOK) {
+                completed++;
+            }
+
+            if (permissionsOK) {
+                completed++;
+            }
+
+
+            const percentage =
+                completed * 20;
+
+
+            progressFill.style.width =
+                percentage + "%";
+
+
+            progressPercent.textContent =
+                percentage + "%";
+
+
+            continueBtn.disabled =
+                !(
+                    cameraOK &&
+                    microphoneOK &&
+                    fullscreenOK &&
+                    permissionsOK
+                );
+
+
+            document.getElementById(
+                "cameraOk"
+            ).value =
+                cameraOK ? "true" : "false";
+
+
+            document.getElementById(
+                "microphoneOk"
+            ).value =
+                microphoneOK ? "true" : "false";
+
+
+            document.getElementById(
+                "fullscreenOk"
+            ).value =
+                fullscreenOK ? "true" : "false";
+
+
+            document.getElementById(
+                "permissionsOk"
+            ).value =
+                permissionsOK ? "true" : "false";
+
+        }
+
+
+
+        /* ==========================================
+           BROWSER CHECK
+        ========================================== */
+
+        let browserOK = false;
+
+
+        function checkBrowser() {
+
+            const supported =
+                !!(
+                    navigator.mediaDevices &&
+                    navigator.mediaDevices.getUserMedia
+                );
+
+
+            if (supported) {
+
+                browserOK = true;
+
+                setStatus(
+                    browserStatus,
+                    "Ready",
+                    "success"
+                );
+
+            }
+            else {
+
+                browserOK = false;
+
+                setStatus(
+                    browserStatus,
+                    "Unsupported",
+                    "error"
+                );
+
+            }
+
+
+            updateProgress();
+
+        }
+
+
+
+        /* ==========================================
+           CAMERA + MICROPHONE
+        ========================================== */
+
+        async function requestMedia() {
+
+            try {
+
+                mediaStream =
+                    await navigator.mediaDevices.getUserMedia(
+                        {
+                            video: true,
+                            audio: true
+                        }
+                    );
+
+
+                cameraOK = true;
+
+                microphoneOK = true;
+
+                permissionsOK = true;
+
+
+                cameraPreview.srcObject =
+                    mediaStream;
+
+
+                cameraPreview.style.display =
+                    "block";
+
+
+                cameraPlaceholder.style.display =
+                    "none";
+
+
+                cameraDot.classList.add(
+                    "success"
+                );
+
+
+                cameraMessage.textContent =
+                    "Camera and microphone verified";
+
+
+                setStatus(
+                    cameraStatus,
+                    "Ready",
+                    "success"
+                );
+
+
+                setStatus(
+                    microphoneStatus,
+                    "Ready",
+                    "success"
+                );
+
+
+                setStatus(
+                    permissionStatus,
+                    "Granted",
+                    "success"
+                );
+
+
+            }
+
+            catch (error) {
+
+                cameraOK = false;
+
+                microphoneOK = false;
+
+                permissionsOK = false;
+
+
+                cameraDot.classList.add(
+                    "error"
+                );
+
+
+                cameraMessage.textContent =
+                    "Camera/microphone permission required";
+
+
+                setStatus(
+                    cameraStatus,
+                    "Blocked",
+                    "error"
+                );
+
+
+                setStatus(
+                    microphoneStatus,
+                    "Blocked",
+                    "error"
+                );
+
+
+                setStatus(
+                    permissionStatus,
+                    "Required",
+                    "error"
+                );
+
+            }
+
+
+            updateProgress();
+
+        }
+
+
+
+        /* ==========================================
+           FULLSCREEN CHECK
+        ========================================== */
+
+        async function requestFullscreen() {
+
+            try {
+
+                if (!document.fullscreenElement) {
+
+                    await document.documentElement.requestFullscreen();
+
+                }
+
+
+                fullscreenOK = true;
+
+
+                setStatus(
+                    fullscreenStatus,
+                    "Ready",
+                    "success"
+                );
+
+
+            }
+
+            catch (error) {
+
+                fullscreenOK = false;
+
+
+                setStatus(
+                    fullscreenStatus,
+                    "Click to enable",
+                    "error"
+                );
+
+            }
+
+
+            updateProgress();
+
+        }
+
+
+
+        /* ==========================================
+           FULLSCREEN CHANGE
+        ========================================== */
+
+        document.addEventListener(
+            "fullscreenchange",
+            function() {
+
+                if (document.fullscreenElement) {
+
+                    fullscreenOK = true;
+
+                    setStatus(
+                        fullscreenStatus,
+                        "Ready",
+                        "success"
+                    );
+
+                }
+                else {
+
+                    fullscreenOK = false;
+
+                    setStatus(
+                        fullscreenStatus,
+                        "Waiting",
+                        "error"
+                    );
+
+                }
+
+
+                updateProgress();
+
+            }
+        );
+
+
+
+        /* ==========================================
+           START CHECKS
+        ========================================== */
+
+        checkBrowser();
+
+
+        requestMedia();
+
+
+        /*
+         * Fullscreen normally requires a user gesture.
+         * Therefore we do not force it automatically here.
+         * The first click on the page attempts fullscreen.
+         */
+
+        document.addEventListener(
+            "click",
+            function handleFirstClick() {
+
+                if (!fullscreenOK) {
+
+                    requestFullscreen();
+
+                }
+
+            },
+            {
+                once: true
+            }
+        );
+
+
+
+        /* ==========================================
+           FORM VALIDATION
+        ========================================== */
+
+        document
+            .getElementById("systemCheckForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    if (
+                        !cameraOK ||
+                        !microphoneOK ||
+                        !fullscreenOK ||
+                        !permissionsOK
+                    ) {
+
+                        event.preventDefault();
+
+
+                        alert(
+                            "Please complete all system checks before continuing."
+                        );
+
+
+                        return;
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

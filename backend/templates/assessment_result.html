@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Assessment Result | CareerAI</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            min-height: 100vh;
+
+            color: #e8eef9;
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(37,99,235,.18),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(20,184,166,.10),
+                    transparent 25%
+                ),
+                #050816;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            height: 70px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(5,8,22,.92);
+
+            border-bottom:
+                1px solid rgba(255,255,255,.07);
+
+            backdrop-filter: blur(20px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 22px;
+
+            font-weight: 800;
+        }
+
+
+        .brand-icon {
+
+            width: 35px;
+
+            height: 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #22d3ee
+                );
+        }
+
+
+        .brand-name {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #5ee7ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .role {
+
+            padding: 9px 16px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(37,99,235,.13);
+
+            border:
+                1px solid rgba(96,165,250,.20);
+
+            color: #cfe2ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .container {
+
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            padding: 40px 0 70px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .eyebrow {
+
+            color: #5ee7ff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+        }
+
+
+        .page-header p {
+
+            color: #8291aa;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           SCORE HERO
+        ===================================================== */
+
+        .score-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 38px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18,39,78,.95),
+                    rgba(8,14,31,.96)
+                );
+
+            border:
+                1px solid rgba(83,168,255,.18);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.25);
+
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .score-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37,99,235,.12);
+
+            filter: blur(70px);
+
+            top: -170px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+        }
+
+
+        .score-label {
+
+            position: relative;
+
+            color: #8fa5c3;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.8px;
+
+            font-weight: 700;
+        }
+
+
+        .score-number {
+
+            position: relative;
+
+            font-size: 78px;
+
+            line-height: 1;
+
+            font-weight: 800;
+
+            margin: 14px 0 8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #52ddff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .score-sub {
+
+            position: relative;
+
+            color: #a8b6cb;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .level {
+
+            position: relative;
+
+            display: inline-block;
+
+            padding: 8px 20px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(20,184,166,.12);
+
+            border:
+                1px solid rgba(45,212,191,.25);
+
+            color: #5ee8c0;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        .expired {
+
+            margin-top: 15px;
+
+            color: #ff9b9b;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .stat {
+
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(11,18,38,.88);
+
+            border:
+                1px solid rgba(255,255,255,.07);
+
+            transition: .2s;
+        }
+
+
+        .stat:hover {
+
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(83,168,255,.20);
+        }
+
+
+        .stat-icon {
+
+            font-size: 18px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .stat-value {
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat-label {
+
+            color: #7889a4;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .card {
+
+            background:
+                rgba(10,17,36,.90);
+
+            border:
+                1px solid rgba(255,255,255,.07);
+
+            border-radius: 19px;
+
+            padding: 24px;
+        }
+
+
+        .card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+        }
+
+
+        .card-title span {
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           AI INSIGHT
+        ===================================================== */
+
+        .insight {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,.11),
+                    rgba(20,184,166,.06)
+                );
+
+            border:
+                1px solid rgba(73,153,255,.15);
+
+            border-radius: 13px;
+
+            padding: 18px;
+
+            color: #aebbd0;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        .insight strong {
+
+            display: block;
+
+            color: #62e5ff;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skill-row {
+
+            margin-bottom: 16px;
+        }
+
+
+        .skill-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 7px;
+
+            font-size: 11px;
+        }
+
+
+        .skill-name {
+
+            color: #cbd6e7;
+
+            font-weight: 600;
+        }
+
+
+        .skill-score {
+
+            color: #61dcff;
+
+            font-weight: 800;
+        }
+
+
+        .skill-track {
+
+            height: 7px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .skill-fill {
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #2dd4bf
+                );
+        }
+
+
+        /* =====================================================
+           WEAK SKILLS
+        ===================================================== */
+
+        .weak-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+        }
+
+
+        .weak {
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(249,115,22,.09);
+
+            border:
+                1px solid rgba(249,115,22,.16);
+
+            color: #ffb276;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .no-weak {
+
+            color: #67e8c0;
+
+            font-size: 11px;
+
+            padding: 10px 0;
+        }
+
+
+        /* =====================================================
+           RECOMMENDATION
+        ===================================================== */
+
+        .recommendation {
+
+            padding: 18px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid rgba(255,255,255,.06);
+
+            color: #aab8cd;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           IMPROVEMENT
+        ===================================================== */
+
+        .improvement {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.035);
+        }
+
+
+        .improvement-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(37,99,235,.13);
+
+            font-size: 17px;
+        }
+
+
+        .improvement-text {
+
+            font-size: 11px;
+
+            color: #8999b1;
+        }
+
+
+        .improvement-value {
+
+            color: #5ee7ff;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           WRONG ANSWERS
+        ===================================================== */
+
+        .wrong-section {
+
+            margin-top: 18px;
+        }
+
+
+        .wrong-item {
+
+            border:
+                1px solid rgba(255,255,255,.07);
+
+            border-radius: 12px;
+
+            margin-bottom: 9px;
+
+            overflow: hidden;
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+
+        .wrong-summary {
+
+            cursor: pointer;
+
+            padding: 13px 15px;
+
+            color: #b7c4d7;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .wrong-details {
+
+            padding: 0 15px 15px;
+
+            font-size: 10px;
+
+            color: #8494ad;
+
+            line-height: 1.7;
+        }
+
+
+        .answer-bad {
+
+            color: #ff8e9d;
+
+            margin-top: 7px;
+        }
+
+
+        .answer-good {
+
+            color: #63e7bf;
+
+            margin-top: 5px;
+        }
+
+
+        /* =====================================================
+           NEXT STEP
+        ===================================================== */
+
+        .next-card {
+
+            padding: 28px;
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37,99,235,.14),
+                    rgba(20,184,166,.07)
+                );
+
+            border:
+                1px solid rgba(83,168,255,.15);
+
+            margin-top: 18px;
+
+            text-align: center;
+        }
+
+
+        .next-card h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .next-card p {
+
+            color: #8595ae;
+
+            font-size: 11px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+
+        .btn {
+
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 9px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            transition: .2s;
+        }
+
+
+        .btn-primary {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #14b8a6
+                );
+        }
+
+
+        .btn-secondary {
+
+            color: #c9d5e7;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border:
+                1px solid rgba(255,255,255,.09);
+        }
+
+
+        .btn:hover {
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           VIOLATION
+        ===================================================== */
+
+        .monitor-info {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            color: #73849e;
+
+            font-size: 10px;
+        }
+
+
+        .monitor-info strong {
+
+            color: #aebbd0;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width:900px) {
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            .grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .navbar {
+
+                padding: 0 16px;
+
+            }
+
+            .role {
+
+                display: none;
+
+            }
+
+            .container {
+
+                width: 94%;
+
+                padding-top: 25px;
+
+            }
+
+            .page-header h1 {
+
+                font-size: 27px;
+
+            }
+
+            .score-number {
+
+                font-size: 60px;
+
+            }
+
+            .stats {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+            .score-card {
+
+                padding: 28px 18px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🤖
+        </div>
+
+        <div class="brand-name">
+            CareerAI
+        </div>
+
+    </div>
+
+
+    <div class="role">
+
+        🎯 {{ target_role }}
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="eyebrow">
+            AI CAREER READINESS REPORT
+        </div>
+
+        <h1>
+            Assessment Completed
+        </h1>
+
+        <p>
+            Your technical assessment performance is ready.
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SCORE
+    ================================================= -->
+
+    <section class="score-card">
+
+
+        <div class="score-label">
+            Technical Readiness Score
+        </div>
+
+
+        <div class="score-number">
+
+            {{ assessment_percentage }}%
+
+        </div>
+
+
+        <div class="score-sub">
+
+            {{ score }} out of {{ total_questions }}
+            questions correct
+
+        </div>
+
+
+        <div class="level">
+
+            {{ assessment_level }}
+
+        </div>
+
+
+        {% if time_expired %}
+
+            <div class="expired">
+
+                ⚠ Assessment submitted after the
+                allocated time.
+
+            </div>
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+
+    <section class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <div class="stat-value">
+                {{ total_questions }}
+            </div>
+
+            <div class="stat-label">
+                Total Questions
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div class="stat-value">
+                {{ score }}
+            </div>
+
+            <div class="stat-label">
+                Correct Answers
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                ⚠
+            </div>
+
+            <div class="stat-value">
+                {{ weak_skills|length }}
+            </div>
+
+            <div class="stat-label">
+                Areas to Improve
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🛡
+            </div>
+
+            <div class="stat-value">
+                {{ assessment_violation_count }}
+            </div>
+
+            <div class="stat-label">
+                Monitoring Violations
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         AI INSIGHT + PERFORMANCE
+    ================================================= -->
+
+    <section class="grid">
+
+
+        <!-- AI INSIGHT -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <span>✦</span>
+
+                AI Performance Insight
+
+            </div>
+
+
+            <div class="insight">
+
+                <strong>
+                    CAREERAI ANALYSIS
+                </strong>
+
+
+                {{ assessment_recommendation }}
+
+
+            </div>
+
+
+            {% if improvement is not none %}
+
+                <div
+                    class="improvement"
+                    style="margin-top:14px;"
+                >
+
+                    <div class="improvement-icon">
+
+                        {% if improvement >= 0 %}
+                            📈
+                        {% else %}
+                            📉
+                        {% endif %}
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="improvement-text">
+                            Change from previous assessment
+                        </div>
+
+
+                        <div class="improvement-value">
+
+                            {% if improvement > 0 %}
+                                +{{ improvement }}%
+                            {% else %}
+                                {{ improvement }}%
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <!-- SKILL PERFORMANCE -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <span>📊</span>
+
+                Skill Performance
+
+            </div>
+
+
+            {% if skill_percentages %}
+
+                {% for skill, percentage in skill_percentages.items() %}
+
+                    <div class="skill-row">
+
+
+                        <div class="skill-top">
+
+                            <span class="skill-name">
+                                {{ skill }}
+                            </span>
+
+                            <span class="skill-score">
+                                {{ percentage }}%
+                            </span>
+
+                        </div>
+
+
+                        <div class="skill-track">
+
+                            <div
+                                class="skill-fill"
+                                style="width: {{ percentage }}%;"
+                            ></div>
+
+                        </div>
+
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="no-weak">
+                    Skill analysis will appear here.
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         WEAK SKILLS + RECOMMENDATION
+    ================================================= -->
+
+    <section class="grid">
+
+
+        <!-- WEAK SKILLS -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <span>⚠</span>
+
+                Skills to Improve
+
+            </div>
+
+
+            {% if weak_skills %}
+
+                <div class="weak-list">
+
+                    {% for skill in weak_skills %}
+
+                        <div class="weak">
+
+                            {{ skill }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-weak">
+
+                    ✓ No major weak areas detected.
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <!-- RECOMMENDATION -->
+
+        <div class="card">
+
+
+            <div class="card-title">
+
+                <span>💡</span>
+
+                What You Should Do Next
+
+            </div>
+
+
+            <div class="recommendation">
+
+                {{ assessment_recommendation }}
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         WRONG ANSWERS
+    ================================================= -->
+
+    {% if wrong_answers %}
+
+        <section class="card wrong-section">
+
+
+            <div class="card-title">
+
+                <span>🔎</span>
+
+                Review Incorrect Answers
+
+            </div>
+
+
+            {% for item in wrong_answers %}
+
+                <details class="wrong-item">
+
+
+                    <summary class="wrong-summary">
+
+                        {{ loop.index }}.
+                        {{ item.question }}
+
+                    </summary>
+
+
+                    <div class="wrong-details">
+
+
+                        <div>
+
+                            <strong>
+                                Skill:
+                            </strong>
+
+                            {{ item.skill }}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Question Type:
+                            </strong>
+
+                            {{ item.type }}
+
+                        </div>
+
+
+                        <div class="answer-bad">
+
+                            Your Answer:
+                            {{ item.your_answer }}
+
+                        </div>
+
+
+                        <div class="answer-good">
+
+                            Correct Answer:
+                            {{ item.correct_answer }}
+
+                        </div>
+
+
+                        {% if item.execution_output %}
+
+                            <div
+                                style="
+                                    margin-top:7px;
+                                    color:#8798b0;
+                                "
+                            >
+
+                                Execution Output:
+                                {{ item.execution_output }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </details>
+
+            {% endfor %}
+
+
+        </section>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         NEXT STEP
+    ================================================= -->
+
+    <section class="next-card">
+
+
+        <h2>
+            🚀 Continue Your Career Journey
+        </h2>
+
+
+        <p>
+
+            CareerAI has identified the areas you should
+            focus on next. Use your results to build a
+            personalized learning plan.
+
+        </p>
+
+
+        <div class="actions">
+
+
+            <a
+                href="{{ url_for('skill_gap') }}"
+                class="btn btn-primary"
+            >
+
+                View Skill Gap →
+
+            </a>
+
+
+            <a
+                href="{{ url_for('roadmap') }}"
+                class="btn btn-secondary"
+            >
+
+                Personalized Roadmap
+
+            </a>
+
+
+            <a
+                href="{{ url_for('reassessment') }}"
+                class="btn btn-secondary"
+            >
+
+                Re-Assess
+
+            </a>
+
+
+        </div>
+
+
+        <div class="monitor-info">
+
+            Assessment monitoring violations:
+            <strong>
+                {{ assessment_violation_count }}
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>

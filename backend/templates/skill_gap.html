@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Gap Analysis | CareerAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 5%,
+                    rgba(0, 153, 255, 0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 15%,
+                    rgba(0, 255, 220, 0.10),
+                    transparent 28%
+                ),
+                #050816;
+
+            color: #ffffff;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           GRID BACKGROUND
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background:
+                rgba(5,8,22,0.78);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+
+            backdrop-filter: blur(20px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #5de1ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .logo span {
+
+            color: #42d9ff;
+        }
+
+
+        .nav-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            color: #aeb8cf;
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #39f6c4;
+
+            box-shadow:
+                0 0 12px #39f6c4;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            padding: 52px 0 80px;
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #55ddff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.8px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .eyebrow::before {
+
+            content: "✦";
+
+            color: #52e1ff;
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(32px, 5vw, 52px);
+
+            line-height: 1.08;
+
+            margin-bottom: 12px;
+        }
+
+
+        .heading-gradient {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #68ddff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .subtitle {
+
+            color: #9ca8c2;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* =========================
+           COMMON CARD
+        ========================= */
+
+        .card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,31,58,0.82),
+                    rgba(8,14,31,0.90)
+                );
+
+            border:
+                1px solid rgba(110,180,255,0.13);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.30),
+                inset 0 1px 0 rgba(255,255,255,0.035);
+
+            backdrop-filter: blur(18px);
+        }
+
+
+        /* =========================
+           TARGET CAREER
+        ========================= */
+
+        .target-card {
+
+            padding: 28px 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .target-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 250px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(40,190,255,0.08);
+
+            filter: blur(40px);
+
+            right: -80px;
+
+            top: -100px;
+
+            pointer-events: none;
+        }
+
+
+        .target-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        .target-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                rgba(65,210,255,0.09);
+
+            border:
+                1px solid rgba(65,210,255,0.17);
+
+            font-size: 24px;
+        }
+
+
+        .target-label {
+
+            color: #73829f;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .target-role {
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            color: #f4f8ff;
+        }
+
+
+        .target-user {
+
+            color: #7887a5;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =========================
+           TOP METRICS
+        ========================= */
+
+        .metrics {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr
+                1fr;
+
+            gap: 22px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .metric-card {
+
+            padding: 27px;
+
+            min-height: 190px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .metric-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(50,180,255,0.05);
+
+            filter: blur(30px);
+
+            right: -50px;
+
+            bottom: -50px;
+        }
+
+
+        .metric-title {
+
+            color: #8290aa;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+        }
+
+
+        .metric-value {
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            line-height: 1;
+
+            margin-bottom: 10px;
+        }
+
+
+        .blue-value {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #42d9ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .green-value {
+
+            color: #45e6b5;
+        }
+
+
+        .purple-value {
+
+            color: #9a8cff;
+        }
+
+
+        .metric-description {
+
+            color: #71809d;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           MAIN ANALYSIS GRID
+        ========================= */
+
+        .analysis-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr
+                0.8fr;
+
+            gap: 22px;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* =========================
+           SKILL COMPARISON
+        ========================= */
+
+        .comparison-card {
+
+            padding: 30px;
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 24px;
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 18px;
+        }
+
+
+        .badge {
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            background:
+                rgba(55,220,255,0.08);
+
+            color: #55dcff;
+
+            border:
+                1px solid rgba(55,220,255,0.16);
+        }
+
+
+        .skill-group {
+
+            margin-bottom: 24px;
+        }
+
+
+        .skill-group:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .group-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+
+        .group-title.matched {
+
+            color: #42e5b3;
+        }
+
+
+        .group-title.missing {
+
+            color: #ffbd70;
+        }
+
+
+        .skill-chips {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+        }
+
+
+        .skill-chip {
+
+            padding: 9px 13px;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .matched-chip {
+
+            color: #62e8bf;
+
+            background:
+                rgba(54,225,174,0.08);
+
+            border:
+                1px solid rgba(54,225,174,0.15);
+        }
+
+
+        .missing-chip {
+
+            color: #ffc47e;
+
+            background:
+                rgba(255,177,80,0.08);
+
+            border:
+                1px solid rgba(255,177,80,0.15);
+        }
+
+
+        .empty-message {
+
+            color: #687792;
+
+            font-size: 12px;
+
+            padding: 12px 0;
+        }
+
+
+        /* =========================
+           READINESS
+        ========================= */
+
+        .readiness-card {
+
+            padding: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .readiness-label {
+
+            color: #8290aa;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.4px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .readiness-circle {
+
+            width: 155px;
+
+            height: 155px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            background:
+                conic-gradient(
+                    #4de2ff 0deg,
+                    #438cff 270deg,
+                    rgba(255,255,255,0.06) 270deg,
+                    rgba(255,255,255,0.06) 360deg
+                );
+
+            box-shadow:
+                0 0 35px rgba(60,210,255,0.18);
+        }
+
+
+        .readiness-circle::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 124px;
+
+            height: 124px;
+
+            border-radius: 50%;
+
+            background: #091123;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+
+        .readiness-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+        }
+
+
+        .readiness-number {
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+            color: #ffffff;
+        }
+
+
+        .readiness-small {
+
+            color: #6f7e9a;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-top: 5px;
+        }
+
+
+        .readiness-level {
+
+            text-align: center;
+
+            color: #54ddff;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+
+        .readiness-description {
+
+            text-align: center;
+
+            color: #75839f;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           AI RECOMMENDATION
+        ========================= */
+
+        .recommendation-card {
+
+            padding: 30px;
+
+            margin-bottom: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .recommendation-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 4px;
+
+            height: 70px;
+
+            left: 0;
+
+            top: 30px;
+
+            border-radius: 0 5px 5px 0;
+
+            background:
+                linear-gradient(
+                    #45d9ff,
+                    #63f4cf
+                );
+        }
+
+
+        .recommendation-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #58ddff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+
+        .recommendation-text {
+
+            color: #b4c0d4;
+
+            font-size: 13px;
+
+            line-height: 1.75;
+
+            padding-left: 22px;
+        }
+
+
+        /* =========================
+           PRIORITIES + STRENGTHS
+        ========================= */
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 22px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .details-card {
+
+            padding: 28px;
+        }
+
+
+        .list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+        }
+
+
+        .list-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 12px 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.05);
+
+            color: #c2ccdc;
+
+            font-size: 11px;
+        }
+
+
+        .list-icon {
+
+            width: 24px;
+
+            height: 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 7px;
+
+            flex-shrink: 0;
+        }
+
+
+        .priority-icon {
+
+            background:
+                rgba(255,176,77,0.10);
+
+            color: #ffbf72;
+        }
+
+
+        .strength-icon {
+
+            background:
+                rgba(55,225,177,0.10);
+
+            color: #4ee3b8;
+        }
+
+
+        .empty-list {
+
+            color: #687792;
+
+            font-size: 12px;
+
+            padding: 10px 0;
+        }
+
+
+        /* =========================
+           ASSESSMENT CTA
+        ========================= */
+
+        .next-card {
+
+            padding: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            border:
+                1px solid rgba(70,215,255,0.17);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(26,57,91,0.75),
+                    rgba(10,23,43,0.90)
+                );
+        }
+
+
+        .next-content h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .next-content p {
+
+            color: #8492ad;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        .next-label {
+
+            color: #55dcff;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+
+        .assessment-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 15px 24px;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            color: #03101b;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #45d9ff,
+                    #63f4cf
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 10px 35px rgba(49,210,255,0.20);
+
+            transition: 0.25s ease;
+        }
+
+
+        .assessment-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 40px rgba(49,210,255,0.32);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #52617d;
+
+            font-size: 10px;
+
+            margin-top: 22px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .metrics {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .analysis-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .next-card {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                width: 94%;
+
+                padding-top: 35px;
+            }
+
+
+            .navbar {
+
+                padding: 0 5%;
+            }
+
+
+            .target-card {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .target-role {
+
+                font-size: 20px;
+            }
+
+
+            .metric-card {
+
+                min-height: auto;
+            }
+
+
+            .comparison-card,
+            .readiness-card,
+            .recommendation-card,
+            .details-card {
+
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Career<span>AI</span>
+        </div>
+
+
+        <div class="nav-status">
+
+            <div class="status-dot"></div>
+
+            AI Skill Analysis Complete
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="container">
+
+
+        <div class="eyebrow">
+            AI SKILL INTELLIGENCE
+        </div>
+
+
+        <h1>
+
+            Understand Your
+            <span class="heading-gradient">
+                Skill Gap
+            </span>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            CareerAI compared your current skills with the requirements
+            of your target career and generated a personalized development plan.
+
+        </p>
+
+
+
+        <!-- =========================
+             TARGET CAREER
+        ========================= -->
+
+        <section class="card target-card">
+
+
+            <div class="target-left">
+
+
+                <div class="target-icon">
+                    🎯
+                </div>
+
+
+                <div>
+
+                    <div class="target-label">
+                        Target Career
+                    </div>
+
+
+                    <div class="target-role">
+                        {{ target_role }}
+                    </div>
+
+
+                    {% if name %}
+
+                    <div class="target-user">
+
+                        Personalized analysis for {{ name }}
+
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="badge">
+                AI MATCHING
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             METRICS
+        ========================= -->
+
+        <section class="metrics">
+
+
+            <!-- MATCH -->
+
+            <div class="card metric-card">
+
+
+                <div class="metric-title">
+                    Current Skill Match
+                </div>
+
+
+                <div class="metric-value blue-value">
+
+                    {{ match_percentage }}%
+
+                </div>
+
+
+                <div class="metric-description">
+
+                    Based on your profile and listed skills.
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- READINESS -->
+
+            <div class="card metric-card">
+
+
+                <div class="metric-title">
+                    Career Readiness
+                </div>
+
+
+                <div class="metric-value green-value">
+
+                    {{ readiness }}
+
+                </div>
+
+
+                <div class="metric-description">
+
+                    AI assessment of your current career preparation.
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ASSESSMENT -->
+
+            <div class="card metric-card">
+
+
+                <div class="metric-title">
+                    Technical Assessment
+                </div>
+
+
+                {% if assessment_completed %}
+
+                    <div class="metric-value purple-value">
+
+                        {{ assessment_percentage }}%
+
+                    </div>
+
+
+                    <div class="metric-description">
+
+                        {{ assessment_score }}
+                        /
+                        {{ assessment_total }}
+                        questions correct.
+
+                    </div>
+
+                {% else %}
+
+                    <div
+                        class="metric-value purple-value"
+                        style="font-size:28px;"
+                    >
+
+                        Not Attempted
+
+                    </div>
+
+
+                    <div class="metric-description">
+
+                        Complete the technical assessment
+                        to measure your actual knowledge.
+
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             SKILL COMPARISON + READINESS
+        ========================= -->
+
+        <section class="analysis-grid">
+
+
+            <!-- SKILL COMPARISON -->
+
+            <div class="card comparison-card">
+
+
+                <div class="section-heading">
+
+
+                    <h2>
+                        Skills Comparison
+                    </h2>
+
+
+                    <div class="badge">
+                        PROFILE VS ROLE
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MATCHED SKILLS -->
+
+                <div class="skill-group">
+
+
+                    <div class="group-title matched">
+
+                        ✓
+
+                        Matched Skills
+
+                    </div>
+
+
+                    <div class="skill-chips">
+
+
+                        {% if matched_skills %}
+
+
+                            {% for skill in matched_skills %}
+
+                                <div class="skill-chip matched-chip">
+
+                                    ✓ {{ skill }}
+
+                                </div>
+
+                            {% endfor %}
+
+
+                        {% else %}
+
+                            <div class="empty-message">
+
+                                No matching skills detected yet.
+
+                            </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MISSING SKILLS -->
+
+                <div class="skill-group">
+
+
+                    <div class="group-title missing">
+
+                        ⚠
+
+                        Skills to Develop
+
+                    </div>
+
+
+                    <div class="skill-chips">
+
+
+                        {% if missing_skills %}
+
+
+                            {% for skill in missing_skills %}
+
+                                <div class="skill-chip missing-chip">
+
+                                    + {{ skill }}
+
+                                </div>
+
+                            {% endfor %}
+
+
+                        {% else %}
+
+                            <div class="empty-message">
+
+                                No major skill gaps detected.
+
+                            </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- READINESS -->
+
+            <div class="card readiness-card">
+
+
+                <div class="readiness-label">
+
+                    AI Career Readiness
+
+                </div>
+
+
+                <div class="readiness-circle">
+
+
+                    <div class="readiness-content">
+
+
+                        <div class="readiness-number">
+
+                            {{ match_percentage }}%
+
+                        </div>
+
+
+                        <div class="readiness-small">
+
+                            Skill Match
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="readiness-level">
+
+                    {{ readiness }}
+
+                </div>
+
+
+                <div class="readiness-description">
+
+                    Your current profile compared with
+                    the technical requirements for
+                    {{ target_role }}.
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             AI RECOMMENDATION
+        ========================= -->
+
+        <section class="card recommendation-card">
+
+
+            <div class="recommendation-title">
+
+                ✦
+
+                AI RECOMMENDATION
+
+            </div>
+
+
+            <div class="recommendation-text">
+
+                {{ recommendation }}
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             STRENGTHS + PRIORITIES
+        ========================= -->
+
+        <section class="details-grid">
+
+
+            <!-- LEARNING PRIORITIES -->
+
+            <div class="card details-card">
+
+
+                <div class="section-heading">
+
+                    <h2>
+                        Learning Priorities
+                    </h2>
+
+
+                    <div class="badge">
+                        FOCUS AREAS
+                    </div>
+
+                </div>
+
+
+                <div class="list">
+
+
+                    {% if learning_priorities %}
+
+
+                        {% for skill in learning_priorities %}
+
+                            <div class="list-item">
+
+
+                                <div class="list-icon priority-icon">
+                                    !
+                                </div>
+
+
+                                {{ skill }}
+
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    {% elif missing_skills %}
+
+
+                        {% for skill in missing_skills[:5] %}
+
+                            <div class="list-item">
+
+
+                                <div class="list-icon priority-icon">
+                                    !
+                                </div>
+
+
+                                {{ skill }}
+
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="empty-list">
+
+                            No learning priorities available yet.
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- STRENGTHS -->
+
+            <div class="card details-card">
+
+
+                <div class="section-heading">
+
+                    <h2>
+                        Your Strengths
+                    </h2>
+
+
+                    <div class="badge">
+                        AI DETECTED
+                    </div>
+
+                </div>
+
+
+                <div class="list">
+
+
+                    {% if strengths %}
+
+
+                        {% for strength in strengths %}
+
+                            <div class="list-item">
+
+
+                                <div class="list-icon strength-icon">
+                                    ✓
+                                </div>
+
+
+                                {{ strength }}
+
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    {% elif matched_skills %}
+
+
+                        {% for skill in matched_skills[:5] %}
+
+                            <div class="list-item">
+
+
+                                <div class="list-icon strength-icon">
+                                    ✓
+                                </div>
+
+
+                                {{ skill }}
+
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="empty-list">
+
+                            Complete more analysis to identify your strengths.
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+     NEXT STEP
+========================= -->
+
+<section class="card next-card">
+
+    <div class="next-content">
+
+        <div class="next-label">
+
+            NEXT STEP
+
+        </div>
+
+        <h2>
+
+            Start Your Career Assessment
+
+        </h2>
+
+        <p>
+
+            Complete your career assessment to evaluate your
+            technical knowledge, identify your strengths and
+            understand the areas you need to improve.
+
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('assessment_instructions') }}"
+        class="assessment-btn"
+    >
+
+        🚀 Start Career Assessment
+
+        <span>
+            →
+        </span>
+
+    </a>
+
+</section>
+
+<a href="{{ url_for('courses') }}" class="assessment-btn">
+    📚 Courses
+    <span>→</span>
+</a>
+
+
+        </section>
+
+
+
+        <div class="footer">
+
+            CareerAI • AI-Powered Graduate Employment Readiness Platform
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

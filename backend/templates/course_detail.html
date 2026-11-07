@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }} | CareerAI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --bg: #050816;
+            --panel: #0b1224;
+            --panel-light: #111b30;
+            --border: #202d45;
+            --cyan: #39d9f5;
+            --teal: #54e8c4;
+            --text: #f4f8ff;
+            --muted: #99a9c3;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--text);
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(52, 75, 110, 0.09) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(52, 75, 110, 0.09) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            min-height: 76px;
+            padding: 18px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            background: rgba(5, 8, 22, 0.96);
+            border-bottom: 1px solid #1b2940;
+        }
+
+        .logo {
+            color: #dffaff;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            color: #c3cee0;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan);
+        }
+
+        /* PAGE */
+        .container {
+            width: 92%;
+            max-width: 1250px;
+            margin: 34px auto 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            color: var(--cyan);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .back-link:hover {
+            color: var(--teal);
+        }
+
+        /* COURSE HEADER */
+        .course-header {
+            position: relative;
+            overflow: hidden;
+            padding: 38px;
+            margin-bottom: 25px;
+            border: 1px solid #203653;
+            border-radius: 24px;
+            background:
+                radial-gradient(ellipse at top right,
+                    rgba(30, 111, 160, 0.18), transparent 55%),
+                linear-gradient(135deg, #0c1930, #0a1020 80%);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-header::after {
+            content: "";
+            position: absolute;
+            right: -75px;
+            top: -100px;
+            width: 260px;
+            height: 260px;
+            border: 1px solid rgba(57, 217, 245, 0.12);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 25px rgba(57, 217, 245, 0.025),
+                0 0 0 55px rgba(57, 217, 245, 0.02);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .course-header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(28px, 3vw, 40px);
+            line-height: 1.25;
+            margin-bottom: 16px;
+            overflow-wrap: anywhere;
+        }
+
+        .description {
+            color: #a9b8cf;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 13px;
+            border: 1px solid #2a3850;
+            border-radius: 9px;
+            background: #131d30;
+            color: #d9e5f7;
+            font-size: 13px;
+        }
+
+        .free {
+            color: #72f1bd;
+            background: rgba(26, 148, 102, 0.12);
+            border-color: rgba(72, 220, 158, 0.25);
+            font-weight: 800;
+        }
+
+        .paid {
+            color: #ffd477;
+            background: rgba(194, 135, 22, 0.12);
+            border-color: rgba(255, 212, 119, 0.25);
+            font-weight: 800;
+        }
+
+        .price {
+            color: #f6fbff;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .price-label {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* CONTENT LAYOUT */
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .section {
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(145deg, #0c1427, #090f1e);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+        }
+
+        .section h2 {
+            color: #f1f7ff;
+            font-size: 21px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: -12px;
+            margin-bottom: 18px;
+        }
+
+        /* LEARNING LIST */
+        .learning-list {
+            list-style: none;
+        }
+
+        .learning-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid #202b40;
+            color: #cbd7e9;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .learning-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 23px;
+            height: 23px;
+            border-radius: 7px;
+            color: var(--teal);
+            background: rgba(84, 232, 196, 0.12);
+            font-weight: 800;
+        }
+
+        /* COURSE INFORMATION */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid #202b40;
+            font-size: 14px;
+        }
+
+        .info-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--muted);
+        }
+
+        .info-value {
+            color: #e9f4ff;
+            font-weight: 700;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .rating {
+            color: #ffd477;
+        }
+
+        /* BUTTONS */
+        .enroll-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            min-height: 49px;
+            margin-top: 24px;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(100deg, var(--cyan), var(--teal));
+            color: #061222;
+            font-size: 14px;
+            font-weight: 800;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .enroll-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(57, 217, 245, 0.18);
+        }
+
+        .enrolled {
+            color: #7bf0bc;
+            background: rgba(35, 153, 103, 0.13);
+            border: 1px solid rgba(72, 220, 158, 0.3);
+        }
+
+        .enrolled:hover {
+            box-shadow: none;
+        }
+
+        .note {
+            color: #8fa2bd;
+            font-size: 12px;
+            line-height: 1.7;
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .footer {
+            padding: 22px 10px 0;
+            color: #637590;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .navbar {
+                padding: 18px 4%;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .container {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .navbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .course-header,
+            .section {
+                padding: 22px;
+                border-radius: 16px;
+            }
+
+            .badges {
+                gap: 8px;
+            }
+
+            .badge {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            .section h2 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="/dashboard" class="logo">CareerAI</a>
+
+        <nav class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/roadmap">Roadmap</a>
+            <a href="/skill-gap">Skill Gap</a>
+            <a href="/courses" class="active">Courses</a>
+            <a href="/my-courses">My Courses</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <a href="/courses" class="back-link">
+            <span>←</span> Back to Courses
+        </a>
+
+        <!-- COURSE OVERVIEW -->
+        <section class="course-header">
+            <div class="eyebrow">CAREERAI LEARNING PATH</div>
+
+            <h1>{{ course.title }}</h1>
+
+            <p class="description">{{ course.description }}</p>
+
+            <div class="badges">
+                <span class="badge">Skill: {{ course.skill }}</span>
+                <span class="badge">Level: {{ course.level }}</span>
+                <span class="badge">Duration: {{ course.duration }}</span>
+                <span class="badge">{{ course.lessons }} Lessons</span>
+
+                {% if course.type == "Free" %}
+                    <span class="badge free">FREE</span>
+                {% else %}
+                    <span class="badge paid">PAID</span>
+                {% endif %}
+            </div>
+
+            {% if course.type == "Paid" %}
+                <div class="price">₹{{ course.price }}</div>
+                <div class="price-label">Course enrollment fee</div>
+            {% else %}
+                <div class="price">Free</div>
+                <div class="price-label">Start learning at no cost</div>
+            {% endif %}
+        </section>
+
+        <!-- COURSE CONTENT -->
+        <div class="content-grid">
+
+            <!-- LEFT COLUMN -->
+            <div>
+                <section class="section">
+                    <h2>What You Will Learn</h2>
+                    <p class="section-subtitle">
+                        Build your knowledge step by step with this learning path.
+                    </p>
+
+                    <ul class="learning-list">
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Understand {{ course.skill }} fundamentals</span>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Learn important concepts step by step</span>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Practice real-world problems</span>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Build practical development skills</span>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Prepare for technical interviews</span>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <span>Apply your knowledge through projects</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2>About This Course</h2>
+                    <p class="description" style="margin-bottom: 0;">
+                        This course is designed to help you develop practical
+                        skills in <strong>{{ course.skill }}</strong>.
+                        The learning path is suitable for students and job
+                        seekers preparing for software development careers.
+                    </p>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <aside>
+                <section class="section">
+                    <h2>Course Information</h2>
+
+                    <div class="info-row">
+                        <span class="info-label">Skill</span>
+                        <span class="info-value">{{ course.skill }}</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Level</span>
+                        <span class="info-value">{{ course.level }}</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Duration</span>
+                        <span class="info-value">{{ course.duration }}</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Lessons</span>
+                        <span class="info-value">{{ course.lessons }}</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Rating</span>
+                        <span class="info-value rating">★ {{ course.rating }}</span>
+                    </div>
+
+                    {% if is_enrolled %}
+                        <a href="/my-courses" class="enroll-button enrolled">
+                            ✓ Already Enrolled <span>→</span>
+                        </a>
+                        <p class="note">
+                            Continue your learning journey from My Courses.
+                        </p>
+                    {% else %}
+                        <a
+                            href="{{ url_for('enroll_course', course_id=course.id) }}"
+                            class="enroll-button"
+                        >
+                            {% if course.type == "Paid" %}
+                                Purchase / Enroll <span>→</span>
+                            {% else %}
+                                Enroll Now <span>→</span>
+                            {% endif %}
+                        </a>
+                        <p class="note">
+                            Take the next step toward building your career skills.
+                        </p>
+                    {% endif %}
+                </section>
+            </aside>
+
+        </div>
+
+        <footer class="footer">
+            CareerAI · AI-Powered Graduate Employment Readiness Platform
+        </footer>
+
+    </main>
+
+</body>
+</html>

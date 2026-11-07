@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Readiness Assessment | CareerAI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .career-box {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .career-box h2 {
+            color: #2563eb;
+            margin: 8px 0;
+        }
+
+        .instructions {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            color: #2563eb;
+        }
+
+        .question {
+            background: #f8fafc;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .category {
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .option {
+            margin: 12px 0;
+        }
+
+        .option label {
+            cursor: pointer;
+            display: block;
+            padding: 12px;
+            background: white;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+        }
+
+        .option label:hover {
+            background: #eff6ff;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🧪 Job Readiness Assessment</h1>
+
+        <p class="subtitle">
+            Test your current knowledge and readiness for your target career.
+        </p>
+
+
+        <div class="career-box">
+
+            <p>🎯 Your Target Career</p>
+
+            <h2>
+                {{ target_role }}
+            </h2>
+
+        </div>
+
+
+        <div class="instructions">
+
+            <h3>📋 Assessment Instructions</h3>
+
+            <ul>
+                <li>Answer all questions.</li>
+                <li>Choose the option that best represents your answer.</li>
+                <li>Your score will be calculated automatically.</li>
+                <li>Your result will generate a personalized recommendation.</li>
+                <li>You can take the assessment again later.</li>
+            </ul>
+
+        </div>
+
+
+        <form action="/submit-assessment" method="POST">
+
+
+            {% for question in questions %}
+
+            <div class="question">
+
+                <div class="category">
+                    {{ question.category }}
+                </div>
+
+                <div class="question-text">
+
+                    {{ loop.index }}.
+                    {{ question.question }}
+
+                </div>
+
+
+                {% for option in question.options %}
+
+                <div class="option">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="question_{{ question.id }}"
+                            value="{{ option }}"
+                            required
+                        >
+
+                        {{ option }}
+
+                    </label>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                🚀 Submit Assessment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

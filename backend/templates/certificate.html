@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerAI Certificate</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #e9eef5;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.certificate-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+
+.top-actions {
+    width: 100%;
+    max-width: 1536px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.back-btn,
+.print-btn {
+    border: none;
+    padding: 11px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-btn {
+    background: #132f61;
+    color: white;
+}
+
+.print-btn {
+    background: #087fca;
+    color: white;
+}
+
+/* CERTIFICATE BACKGROUND */
+.certificate-container {
+    width: min(1536px, 96vw);
+    aspect-ratio: 1536 / 1024;
+    position: relative;
+    overflow: hidden;
+    background-image: url("{{ url_for('static', filename='Images/CareerAI_Certificate_Template.png') }}");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,.20);
+}
+
+/* CAREERAI HEADING */
+.certificate-heading {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48%;
+    text-align: center;
+    z-index: 10;
+    color: #102b61;
+}
+.brand-line {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 2.7vw, 40px);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.ecosystem-label {
+    display: block;
+    margin-top: 4px;
+    color: #a77a19;
+    font-size: clamp(11px, 1.15vw, 17px);
+    font-weight: bold;
+    letter-spacing: 2.5px;
+}
+
+.certificate-title {
+    margin-top: 8px;
+    color: #173b70;
+    font-size: clamp(14px, 1.55vw, 23px);
+    font-weight: 800;
+    letter-spacing: 3px;
+    width: 120%;
+    margin-left: -10%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* STUDENT NAME */
+.student-name {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(30px, 4vw, 62px);
+    font-weight: bold;
+    font-style: italic;
+    color: #102b61;
+    line-height: 1.1;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* COURSE NAME */
+/* COURSE NAME */
+/* COURSE NAME */
+.course-name {
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56%;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(26px, 2.5vw, 38px);
+    font-weight: bold;
+    color: #1764dc;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: break-word;
+    z-index: 10;
+}
+/* COMPLETION CAPTION */
+/* COMPLETION MESSAGE ALIGNED WITH COURSE TITLE */
+.completion-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    color: #173b70;
+    z-index: 10;
+}
+
+.recognition-text {
+    font-size: clamp(16px, 1.45vw, 22px);
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.motivation-text {
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-style: italic;
+    line-height: 1.5;
+    color: #936f28;
+    text-align: center;
+}
+.motivation-text {
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-style: italic;
+    line-height: 1.6;
+    color: #936f28;
+}
+
+
+
+
+/* COMPLETION DATE */
+/* COMPLETION DATE */
+.completion-date {
+    position: absolute;
+    left: 20%;
+    bottom: 15%;
+    width: 22%;
+    text-align: center;
+    font-size: clamp(12px, 1.15vw, 18px);
+    font-weight: 600;
+    color: #172b58;
+    z-index: 10;
+}
+
+/* CERTIFICATE ID */
+/* CERTIFICATE ID */
+.certificate-id {
+    position: absolute;
+    left: 55%;
+    bottom: 15%;
+    width: 25%;
+    text-align: center;
+    font-size: clamp(10px, 1.05vw, 16px);
+    font-weight: 600;
+    color: #172b58;
+    white-space: nowrap;
+    z-index: 10;
+}
+/* GOLD TROPHY: CENTER OF BADGE */
+.badge-trophy {
+    position: absolute;
+
+    /* Badge center based on the existing background image */
+    left: 50%;
+    top: 82%;
+
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: clamp(38px, 5vw, 68px);
+    height: clamp(38px, 5vw, 68px);
+
+    font-size: clamp(27px, 3vw, 43px);
+    line-height: 1;
+
+    z-index: 12;
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 0 2px #fff4b0)
+        drop-shadow(0 0 5px #ffca28)
+        drop-shadow(0 0 10px rgba(255, 180, 0, .85));
+}
+
+/* SIGNATURE */
+.signature-area {
+    position: absolute;
+    right: 5.7%;
+    bottom: 7.2%;
+    width: 19.5%;
+    height: 17%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 10;
+}
+
+.signature-image {
+    width: 78%;
+    max-width: 180px;
+    height: 52px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: 0 auto 2px;
+}
+
+.signature-line {
+    width: 90%;
+    height: 1px;
+    background: #172b58;
+    margin-bottom: 6px;
+}
+
+.signature-name {
+    font-size: clamp(12px, 1.15vw, 18px);
+    font-weight: bold;
+    color: #172b58;
+    line-height: 1.15;
+}
+
+.signature-role,
+.signature-platform {
+    font-size: clamp(8px, .82vw, 13px);
+    color: #26365d;
+    margin-top: 3px;
+    line-height: 1.2;
+}
+
+/* PRINT */
+@page {
+    size: A4 landscape;
+    margin: 0;
+}
+
+@media print {
+    html, body {
+        width: 297mm !important;
+        height: 210mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .certificate-page {
+        width: 297mm !important;
+        height: 210mm !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+
+    .top-actions {
+        display: none !important;
+    }
+
+    .certificate-container {
+        width: 297mm !important;
+        height: 210mm !important;
+        max-width: none !important;
+        aspect-ratio: auto !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        background-size: 100% 100% !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .certificate-page {
+        padding: 10px;
+    }
+
+    .brand-line {
+        letter-spacing: 1px;
+    }
+
+    .ecosystem-label {
+        letter-spacing: 1px;
+    }
+
+    .student-name {
+        font-size: 30px;
+    }
+
+    .course-name {
+        font-size: 20px;
+        white-space: normal;
+    }
+
+    .completion-caption {
+        width: 56%;
+    }
+
+    .recognition-text {
+        font-size: 10px;
+    }
+
+    .motivation-text {
+        font-size: 9px;
+    }
+
+    .badge-trophy {
+        top: 79%;
+        font-size: 27px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .signature-image {
+        height: 35px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="certificate-page">
+
+    <div class="top-actions">
+        <a href="{{ url_for('certificates') }}" class="back-btn">
+            ← Back to Certificates
+        </a>
+
+        <button type="button" class="print-btn" onclick="window.print()">
+            🖨 Print / Save PDF
+        </button>
+    </div>
+
+    <div class="certificate-container">
+
+        <!-- CAREERAI BRAND -->
+        <div class="certificate-heading">
+            <div class="brand-line">CareerAI</div>
+            <div class="ecosystem-label">LEARNING ECOSYSTEM</div>
+            <div class="certificate-title">CERTIFICATE OF ACHIEVEMENT</div>
+        </div>
+
+        <!-- STUDENT NAME -->
+        <div class="student-name">
+            {{ student_name|default('Prathyusha') }}
+        </div>
+
+        <!-- COURSE NAME -->
+        <div class="course-name">
+            {{ course_name|default('Git & GitHub for Developers') }}
+        </div>
+
+        <!-- COMPLETION MESSAGE -->
+        <div class="completion-caption">
+            <p class="recognition-text">
+                Congratulations on successfully completing your course and
+                achieving a new milestone in your learning journey!
+            </p>
+
+            <p class="motivation-text">
+                Keep building your skills, believing in your potential,
+                and moving closer to your career dreams.
+            </p>
+        </div>
+
+        <!-- COMPLETION DATE -->
+        <div class="completion-date">
+            {{ completion_date|default('08 October 2026') }}
+        </div>
+
+        <!-- CERTIFICATE ID -->
+        <div class="certificate-id">
+            {{ certificate_id|default('CAI-GITHUB-CERT') }}
+        </div>
+
+        <!-- TROPHY INSIDE CENTRAL BADGE -->
+        <div class="badge-trophy" aria-label="Golden achievement trophy">
+            🏆
+        </div>
+
+        <!-- SIGNATURE -->
+        <div class="signature-area">
+            <img
+                src="{{ url_for('static', filename='Images/prathyusha_signature.png') }}"
+                alt="Prathyusha Signature"
+                class="signature-image"
+            >
+
+            <div class="signature-line"></div>
+            <div class="signature-name">Prathyusha</div>
+            <div class="signature-role">Project Owner &amp; Developer</div>
+            <div class="signature-platform">CareerAI Platform</div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

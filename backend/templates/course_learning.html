@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }} | CareerAI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --navy: #070b19;
+            --panel: #0e172b;
+            --panel2: #111e35;
+            --cyan: #35d5f4;
+            --teal: #53efc4;
+            --text: #eef6ff;
+            --muted: #9aaac4;
+            --border: rgba(125, 164, 211, 0.20);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--text);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(53,213,244,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(53,213,244,.025) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(7, 11, 25, 0.97);
+            border-bottom: 1px solid var(--border);
+            color: white;
+            padding: 18px clamp(18px, 4vw, 48px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 24px;
+            backdrop-filter: blur(14px);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #e9faff;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+            gap: clamp(12px, 1.8vw, 26px);
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            color: #c5d2e7;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        /* PAGE LAYOUT */
+        .container {
+            width: min(1440px, 94%);
+            margin: 30px auto 60px;
+        }
+
+        .course-header,
+        .lesson-sidebar,
+        .lesson-content {
+            background: linear-gradient(
+                145deg,
+                rgba(17, 30, 53, 0.97),
+                rgba(10, 17, 33, 0.98)
+            );
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+        }
+
+        /* COURSE HEADER */
+        .course-header {
+            padding: clamp(22px, 3vw, 36px);
+            margin-bottom: 24px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--cyan);
+            text-decoration: none;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .back-link:hover {
+            color: var(--teal);
+        }
+
+        .course-header h1 {
+            font-size: clamp(26px, 3vw, 36px);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: #f3f8ff;
+        }
+
+        .course-description {
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 22px;
+            max-width: 1000px;
+        }
+
+        /* COURSE BADGES */
+        .course-meta {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .meta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            flex: 0 0 auto;
+            background: rgba(53, 213, 244, 0.08);
+            border: 1px solid rgba(53, 213, 244, 0.16);
+            color: #d8f8ff;
+            padding: 9px 13px;
+            border-radius: 10px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* PROGRESS BAR */
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #e8f5ff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #202d44;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            display: block;
+            height: 100%;
+            min-height: 12px;
+            max-width: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--teal));
+            border-radius: 20px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 14px rgba(53, 213, 244, 0.35);
+        }
+
+        .progress-text {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* LESSON LAYOUT */
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .lesson-sidebar {
+            padding: 20px;
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .lesson-sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 7px;
+            color: #f0f7ff;
+        }
+
+        .lesson-count {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .lesson-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .lesson-link {
+            display: block;
+            padding: 13px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: #e5efff;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .lesson-link:hover {
+            background: rgba(53, 213, 244, 0.08);
+            border-color: rgba(53, 213, 244, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .lesson-link.completed {
+            background: rgba(83, 239, 196, 0.07);
+            border-color: rgba(83, 239, 196, 0.35);
+        }
+
+        .lesson-number {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .lesson-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .lesson-status {
+            margin-top: 7px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .completed-text {
+            color: var(--teal);
+        }
+
+        .pending-text {
+            color: var(--muted);
+        }
+
+        /* LESSON CONTENT */
+        .lesson-content {
+            padding: clamp(22px, 3vw, 32px);
+            min-width: 0;
+        }
+
+        .module {
+            color: var(--cyan);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            margin-bottom: 9px;
+        }
+
+        .lesson-content h2 {
+            font-size: clamp(23px, 2.5vw, 30px);
+            line-height: 1.3;
+            margin-bottom: 10px;
+            color: #f4f8ff;
+        }
+
+        .duration {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .content-box {
+            background: rgba(4, 10, 23, 0.48);
+            border: 1px solid rgba(125, 164, 211, 0.13);
+            border-left: 4px solid var(--cyan);
+            padding: 22px;
+            border-radius: 12px;
+            white-space: pre-wrap;
+            line-height: 1.9;
+            font-size: 15px;
+            color: #dbe7f8;
+            overflow-wrap: anywhere;
+            overflow-x: auto;
+        }
+
+        /* LESSON BUTTONS */
+        .lesson-actions {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .complete-form {
+            margin: 0;
+        }
+
+        .complete-button {
+            border: none;
+            background: linear-gradient(100deg, #32c9ef, #53efc4);
+            color: #061321;
+            padding: 13px 20px;
+            border-radius: 11px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 800;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .complete-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .completed-button {
+            display: inline-block;
+            background: rgba(83, 239, 196, 0.1);
+            border: 1px solid rgba(83, 239, 196, 0.3);
+            color: var(--teal);
+            padding: 13px 18px;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .lesson-navigation {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 11px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            background: #152641;
+            border: 1px solid rgba(53, 213, 244, 0.25);
+            color: #dffaff;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .nav-button:hover {
+            background: #1b3556;
+            border-color: var(--cyan);
+        }
+
+        .empty-content {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--muted);
+        }
+
+        .empty-content h2 {
+            margin-bottom: 10px;
+            color: #f0f7ff;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1100px) {
+            .navbar {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                white-space: normal;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .lesson-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 15px 18px;
+            }
+
+            .nav-links {
+                gap: 12px 18px;
+            }
+
+            .container {
+                width: 94%;
+                margin-top: 20px;
+            }
+
+            .course-header,
+            .lesson-content {
+                padding: 20px;
+            }
+
+            .lesson-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .lesson-navigation {
+                justify-content: flex-start;
+            }
+
+            .content-box {
+                padding: 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <div class="navbar">
+        <div class="logo">CareerAI</div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/roadmap">Roadmap</a>
+            <a href="/skill-gap">Skill Gap</a>
+            <a href="/courses">Courses</a>
+            <a href="/my-courses">My Courses</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- COURSE HEADER -->
+        <div class="course-header">
+
+            <a href="/my-courses" class="back-link">
+                ← Back to My Courses
+            </a>
+
+            <h1>{{ course.title }}</h1>
+
+            <p class="course-description">
+                {{ course.description }}
+            </p>
+
+            <!-- COURSE DETAILS -->
+            <div class="course-meta">
+                <span class="meta">Skill: {{ course.skill }}</span>
+                <span class="meta">Level: {{ course.level }}</span>
+                <span class="meta">Duration: {{ course.duration }}</span>
+                <span class="meta">{{ total_lessons }} Lessons</span>
+            </div>
+
+            <!-- COURSE PROGRESS -->
+            <div class="progress-header">
+                <span>Course Progress</span>
+                <span>{{ progress_percentage }}%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div
+                    class="progress-fill"
+                    style="width: {{ progress_percentage }}%;"
+                ></div>
+            </div>
+
+            <div class="progress-text">
+                {{ completed_count }} of {{ total_lessons }} lessons completed
+            </div>
+
+        </div>
+
+        {% if lessons %}
+
+        <div class="layout">
+
+            <!-- LESSON SIDEBAR -->
+            <aside class="lesson-sidebar">
+
+                <h2>Course Lessons</h2>
+
+                <p class="lesson-count">
+                    {{ completed_count }} / {{ total_lessons }} completed
+                </p>
+
+                <div class="lesson-list">
+
+                    {% for lesson in lessons %}
+
+                    <a
+                        href="#lesson-{{ lesson.id }}"
+                        class="lesson-link {% if lesson.id in completed_lessons %}completed{% endif %}"
+                    >
+                        <div class="lesson-number">
+                            Lesson {{ lesson.lesson_number }}
+                        </div>
+
+                        <div class="lesson-title">
+                            {{ lesson.title }}
+                        </div>
+
+                        <div class="lesson-status">
+                            {% if lesson.id in completed_lessons %}
+                                <span class="completed-text">✓ Completed</span>
+                            {% else %}
+                                <span class="pending-text">
+                                    {{ lesson.duration }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+            </aside>
+
+            <!-- LESSON CONTENT -->
+            <main class="lesson-content">
+
+                {% for lesson in lessons %}
+
+                <section
+                    id="lesson-{{ lesson.id }}"
+                    style="padding-bottom:40px; margin-bottom:40px; border-bottom:1px solid var(--border);"
+                >
+                    <div class="module">
+                        {{ lesson.module }}
+                    </div>
+
+                    <h2>
+                        Lesson {{ lesson.lesson_number }}: {{ lesson.title }}
+                    </h2>
+
+                    <div class="duration">
+                        Duration: {{ lesson.duration }}
+                    </div>
+
+                    <div class="content-box">{{ lesson.content }}</div>
+
+                    <!-- LESSON ACTIONS -->
+                    <div class="lesson-actions">
+
+                        <div>
+                            {% if lesson.id in completed_lessons %}
+
+                                <div class="completed-button">
+                                    ✓ Lesson Completed
+                                </div>
+
+                            {% else %}
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('complete_course_lesson', course_id=course_id, lesson_id=lesson.id) }}"
+                                    class="complete-form"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="complete-button"
+                                    >
+                                        ✓ Mark Lesson as Complete
+                                    </button>
+                                </form>
+
+                            {% endif %}
+                        </div>
+
+                        <!-- LESSON NAVIGATION -->
+                        <div class="lesson-navigation">
+
+                            {% if not loop.first %}
+                                <a
+                                    href="#lesson-{{ lessons[loop.index0 - 1].id }}"
+                                    class="nav-button"
+                                >
+                                    ← Previous
+                                </a>
+                            {% endif %}
+
+                            {% if not loop.last %}
+                                <a
+                                    href="#lesson-{{ lessons[loop.index0 + 1].id }}"
+                                    class="nav-button"
+                                >
+                                    Next →
+                                </a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </section>
+
+                {% endfor %}
+
+            </main>
+        </div>
+
+        {% else %}
+
+        <!-- NO LESSONS -->
+        <div class="lesson-content">
+            <div class="empty-content">
+                <h2>No lessons available</h2>
+                <p>Lessons have not been added to this course yet.</p>
+            </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
